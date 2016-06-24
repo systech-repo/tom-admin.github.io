@@ -17,10 +17,15 @@
 #      REVISION:  ---
 #===============================================================================
 
-read -p "Who is the user ? " user
-read -p "What's your name ? " name
-read -p "What's your email ? " email
-read -p "Repository's name ? (don't forget .git)" repo
+user='tom-admin'
+name='tom-admin'
+email='tom-admin@tuta.io'
+repo='tom-admin.github.io'
+
+#read -p "Who is the user ? " user
+#read -p "What's your name ? " name
+#read -p "What's your email ? " email
+#read -p "Repository's name ? (don't forget .git)" repo
 
 #----------------------------------------------------------------
 # Git Intialize && set up the config (repository, name, email)
