@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+		<title>tom-admin &mdash; Articles tagged pelican</title>
+		<meta charset="utf-8" />
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="https://tom-admin.github.io/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/atom+xml"
+			title="tom-admin — Flux Atom"
+			href="https://tom-admin.github.io/" /> 
+		<!--[if lte IE 8]><script src="https://tom-admin.github.io/theme/js/html5shiv.js"></script><![endif]-->
+</head>
+
+<body class="home blog custom-background " >
+	<div id="container">
+		<div id="header">
+				<h1 id="site-title"><a href="https://tom-admin.github.io">tom-admin</a></h1>
+<h2 id="site-description">#!/dev/tom-admin</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/astuces.html">Astuces</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/linux.html">Linux</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/memento.html">Memento</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/pelican.html">Pelican</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/python.html">Python</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/revisions.html">Révisions</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/scripting.html">Scripting</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+<div class="page-title">
+	<h2>Tagged with <span>pelican</span> &hellip;</h2>
+</div>
+		</div>
+	
+		<div id="contents">
+<div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/github-et-pelican.html">mar. 10 mars 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/pelican.html" title="View all posts in Pelican" rel="category tag">Pelican</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/github-et-pelican.html" title="Permalink to Github et Pelican" rel="bookmark">Github et Pelican</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="publier-son-site-pelican">
+<h2>Publier son site Pelican</h2>
+<p>Nous allons voir les différentes étapes pour publier notre site internet généré par <strong>Pelican</strong> sur la plateforme github. Ainsi, nous disposerons d'un site qui bénéficie d'un <em>certificat SSL reconnu</em> (pas d'alerte dans le navigateur de l'internaute donc), mais aussi des sources de notre site internet.</p>
+<div class="section" id="partons-de-rien">
+<h3>Partons de rien</h3>
+<p>Nous allons partir de rien (pas de site Pelican déjà présent) pour illustrer cette simplicité enfantine qu'est de publier pelican sur github. Pour cela première chose à faire, se créer un compte sur github : <a class="reference external" href="https://github.com/join">https://github.com/join</a></p>
+<img alt="" src="images/github_signup.png" style="width: 836px; height: 500px;" />
+<p>Saisir l'ensemble des informations requises. Une fois cela effectué, votre espace github s'ouvre à vous (pensez à valider votre email). Cliquez à droite en haut de l'écran sur <strong>New repository</strong></p>
+<img alt="" src="images/github_new_repo.png" style="width: 836px; height: 500px;" />
+<p>Respectez cette syntaxe pour le nom de votre repo : <strong>votre-nom-utilisateur.github.io</strong></p>
+<img alt="" src="images/creation_repo.png" style="width: 836px; height: 500px;" />
+<p>Si tout ce passe pour le mieux dans le meilleur des mondes, alors github va vous le faire savoir par le message suivant, vous invitant à faire votre premier <em>commit</em> :</p>
+<img alt="" src="images/repo_ok.png" style="width: 836px; height: 500px;" />
+<p>Voilà tout est configuré sur github, maintenant il nous reste à paramétrer git. Mais avant, comme dit précédemment je pars de rien, donc il me faut créer un blog par le divin Pelican. Ainsi, j'entre en mode <a class="reference external" href="https://static.squarespace.com/static/51b3dc8ee4b051b96ceb10de/51ce6099e4b0d911b4489b79/51ce61b8e4b0d911b449e6fe/1313793167043/1000w/ramboV3.jpeg">rambo</a> énervé et je rentre frénétiquement dans le terminal les commandes suivantes :</p>
+<pre class="code bash literal-block">
+$ mkdir blog <span class="o">&amp;&amp;</span> <span class="nb">cd</span> blog <span class="o">&amp;&amp;</span> pelican-quickstart
+</pre>
+<p>L'interrogatoire commence, je remplis les questions comme il me convient puis une fois cela réalisé je me déplace dans le dossier content en vue de créer mon premier article.</p>
+</div>
+<div class="section" id="git">
+<h3>Git</h3>
+<p>Première chose, vérifier que git est installé en ouvrant le terminal ([CTRL]+[ALT]+[T] pour les personnes sous Ubuntu et dérivés)</p>
+<pre class="code bash literal-block">
+$ whereis git
+git: /usr/bin/git /usr/bin/X11/git /usr/share/man/man1/git.1.gz
+</pre>
+<p>Si cette dernière ligne s'affiche <em>git: /usr/bin/git /usr/bin/X11/git /usr/share/man/man1/git.1.gz</em> alors tout est bon git est installé, sinon saisir toujours dans le terminal :</p>
+<pre class="code bash literal-block">
+$ sudo apt-get install git -y
+</pre>
+<p>Maintenant que cette vérification est faites, nous allons configurer <em>git</em>.</p>
+<pre class="code bash literal-block">
+$ git config --global user.name <span class="s2">&quot;saisir-votre-nom&quot;</span>
+$ git config --global user.email <span class="s2">&quot;saisir-votre-mot-de-passe&quot;</span>
+$ git config --global http.postBuffer 52428800
+$ git config --global color.ui <span class="nb">true</span>
+$ git remote add origin https://github.com/votre-nom-utilisateur/nom-de-votre-repository.git
+</pre>
+<p>Maintenant nous allons créer un fichier <em>.gitignore</em> permettant de ne pas uploader les fichiers que nous allons spécifier :</p>
+<pre class="code bash literal-block">
+<span class="nb">echo</span> <span class="s2">&quot;output
+*.pyc
+*.pid
+Makefile
+develop_server.sh
+*.sh
+*.py
+.gitignore
+.*&quot;</span>&gt;.gitignore
+</pre>
+<p>Ceci fait, il nous faut créer notre premier commit vide, puis renommer notre <em>master</em> en <em>source</em> (on transfère notre master dans une branche source plus exactement):</p>
+<pre class="code bash literal-block">
+$ git commit --allow-empty -m <span class="s2">&quot;le message de votre choix&quot;</span>
+$ git branch -m master <span class="nb">source</span>
+$ git add .
+$ git commit -m <span class="s1">'le message de votre choix'</span>
+$ git push origin <span class="nb">source</span>
+</pre>
+<p>Les sources sont désormais présentes dans votre repository, il nous reste plus qu'à mettre en place notre site sur github :</p>
+<pre class="code bash literal-block">
+$ make html
+$ ghp-import output
+$ git push origin gh-pages:master
+</pre>
+<p>Si vous avez rencontré un problème vous avez la possibilité de visionner en vidéo selon la vitesse de votre choix toutes les opérations que nous avons effectuées ci-dessus : <a class="reference external" href="http://antre-du-tux.info/demos/git.html">voir</a></p>
+</div>
+<div class="section" id="scripts-pour-les-feignasses">
+<h3>Scripts pour les feignasses</h3>
+<p>Voici le script pour publier votre site internet généré par Pelican sur votre github. Le paramétrage a été fait pour une connexion HTTPS et non SSH, mais libre à vous de le changer en décommentant la ligne   # SSH connection --&gt; git remote add origin git&#64;github.com:&quot;$user&quot;/&quot;$repo&quot; et en commentant par un <em>#</em> la ligne         git remote add origin https://github.com/&quot;$user&quot;/&quot;$repo&quot;.</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1">#----------------------------------------------------------------
+# Dependencies - GH-IMPORT
+#----------------------------------------------------------------
+</span><span class="k">if</span> <span class="o">[</span> -z <span class="k">$(</span>whereis dh-import<span class="k">)</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">echo</span> -e <span class="s2">&quot;\e[1;31mdh-import not installed, please run 'sudo pip install gh-import'\e[0;m&quot;</span><span class="p">;</span>
+        <span class="nb">exit</span> 1<span class="p">;</span>
+<span class="k">fi</span><span class="p">;</span>
+
+<span class="c1">#----------------------------------------------------------------
+# Git Intialize &amp;&amp; set up the config (repository, name, email)
+#----------------------------------------------------------------
+</span>clear <span class="o">&amp;&amp;</span> <span class="nb">read</span> -p <span class="s2">&quot;Who is the user ? &quot;</span> user
+<span class="nb">read</span> -p <span class="s2">&quot;What's your name ? &quot;</span> name
+<span class="nb">read</span> -p <span class="s2">&quot;What's your email ? &quot;</span> email
+<span class="nb">read</span> -p <span class="s2">&quot;Repository's name ? (don't forget .git)&quot;</span> repo
+
+<span class="c1">#----------------------------------------------------------------
+# Git Intialize &amp;&amp; set up the config (repository, name, email)
+#----------------------------------------------------------------
+</span>git init
+git remote add origin https://github.com/<span class="s2">&quot;</span><span class="nv">$user</span><span class="s2">&quot;</span>/<span class="s2">&quot;</span><span class="nv">$repo</span><span class="s2">&quot;</span>
+<span class="c1"># SSH connection --&gt; git remote add origin git&#64;github.com:&quot;$user&quot;/&quot;$repo&quot;
+</span>git remote add origin https://github.com/<span class="s2">&quot;</span><span class="nv">$user</span><span class="s2">&quot;</span>/<span class="s2">&quot;</span><span class="nv">$repo</span><span class="s2">&quot;</span>
+git config --global user.name <span class="s2">&quot;</span><span class="nv">$name</span><span class="s2">&quot;</span>
+git config --global user.email <span class="s2">&quot;</span><span class="nv">$email</span><span class="s2">&quot;</span>
+git config --global http.postBuffer 52428800
+
+<span class="nb">echo</span> <span class="s2">&quot;output
+*.pyc
+*.pid
+Makefile
+develop_server.sh
+*.sh
+*.py
+.gitignore
+.*
+&quot;</span>&gt; .gitignore
+
+<span class="c1">#----------------------------------------------------------------
+# Commit website's sources
+#----------------------------------------------------------------
+</span>git commit --allow-empty -m <span class="s2">&quot;initial commit&quot;</span>
+git branch -m master <span class="nb">source</span>
+git add .
+git commit -m <span class="s1">'Création du source'</span>
+git push origin <span class="nb">source</span>
+
+<span class="c1">#----------------------------------------------------------------
+# Initialize your web site
+#----------------------------------------------------------------
+</span>make html
+ghp-import output
+git push origin gh-pages:master
+</pre>
+<p>Le script suivant a pour objectif de <strong>mettre à jour</strong> votre <em>site</em> ainsi que ses <em>sources</em>, dès que vous rajoutez de nouveaux articles, pages ...</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1">#----------------------------------------------------------------
+# Sources updates
+#----------------------------------------------------------------
+</span><span class="nb">echo</span> -e <span class="s2">&quot;\e[1;34mUpdating sources ... \e[0;m&quot;</span>
+git add .
+git commit -m <span class="s1">'up'</span>
+git push origin <span class="nb">source</span>
+
+<span class="c1">#----------------------------------------------------------------
+# Site updates
+#----------------------------------------------------------------
+</span><span class="nb">echo</span> -e <span class="s2">&quot;\e[1;34mUpdating site ... \e[0;m&quot;</span>
+make html
+ghp-import output
+git push origin gh-pages:master
+</pre>
+<p>Vous pouvez maintenant enregistrer le script de mise à jour dans un dossier, créer un <em>alias</em> dans votre bashrc qui pointe sur ce script, ou bien créer une fonction directement dans votre bashrc contenant ce code.</p>
+</div>
+</div>
+
+		</div> <!--/#entry-content-->
+    		<span class="tag-links"><strong>Tagged</strong>
+ <a href="https://tom-admin.github.io/tag/git.html" rel="tag">git</a>,  <a href="https://tom-admin.github.io/tag/github.html" rel="tag">github</a>,  <a href="https://tom-admin.github.io/tag/pelican.html" rel="tag">pelican</a>    		</span>
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="navigation">
+</div>
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://getpelican.com">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

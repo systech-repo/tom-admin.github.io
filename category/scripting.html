@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+		<title>tom-admin &mdash; Articles in Category Scripting</title>
+		<meta charset="utf-8" />
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="https://tom-admin.github.io/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/atom+xml"
+			title="tom-admin — Flux Atom"
+			href="https://tom-admin.github.io/" /> 
+		<!--[if lte IE 8]><script src="https://tom-admin.github.io/theme/js/html5shiv.js"></script><![endif]-->
+</head>
+
+<body class="home blog custom-background " >
+	<div id="container">
+		<div id="header">
+				<h1 id="site-title"><a href="https://tom-admin.github.io">tom-admin</a></h1>
+<h2 id="site-description">#!/dev/tom-admin</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/astuces.html">Astuces</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/linux.html">Linux</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/memento.html">Memento</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/pelican.html">Pelican</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/python.html">Python</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/revisions.html">Révisions</a></li>
+						<li class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/scripting.html">Scripting</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+<div class="page-title">
+	<h2><span>Scripting</span></h2>
+</div>
+		</div>
+	
+		<div id="contents">
+<div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/scripts-utiles.html">mer. 25 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/scripting.html" title="View all posts in Scripting" rel="category tag">Scripting</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/scripts-utiles.html" title="Permalink to Scripts utiles" rel="bookmark">Scripts utiles</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="verification-root">
+<h2>Vérification root</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Be root or not to be
+</span>
+<span class="c1"># Toutes les lignes contenant un $(commande) font appel à un sous-shell.
+# Une autre solution consiste à utiliser les back-quotes `ma commande` qui ne feront toutefois pas appel à un sous-shell (rapidité moindre)
+# exemple : $(whoami) est &quot;équivalent&quot; dans le résultat à l'utilisation de `whoami`
+</span>
+<span class="c1"># variables couleurs
+</span><span class="nv">RC</span><span class="o">=</span><span class="s1">'\e[1;31m'</span>
+<span class="nv">NC</span><span class="o">=</span><span class="s1">'\e[0;m'</span>
+
+<span class="c1"># vérification avec USER ID
+</span><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$UID</span><span class="k">)</span> -ne <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$RC</span><span class="s2"> Must be root to perform this action !</span><span class="nv">$NC</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="nb">exit</span> 1<span class="p">;</span>
+<span class="k">fi</span>
+
+<span class="c1"># vérification avec LOGNAME
+</span><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$LOGNAME</span><span class="k">)</span> !<span class="o">=</span> <span class="s1">'root'</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$RC</span><span class="s2"> Must be root to perform this action !</span><span class="nv">$NC</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="nb">exit</span> 1<span class="p">;</span>
+<span class="k">fi</span>
+
+<span class="c1"># vérification avec WHOAMI
+</span><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span>whoami<span class="k">)</span> !<span class="o">=</span> <span class="s1">'root'</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$RC</span><span class="s2"> Must be root to perform this action !</span><span class="nv">$NC</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="nb">exit</span> 1<span class="p">;</span>
+<span class="k">fi</span>
+
+<span class="c1"># vérification avec $USER
+</span><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$USER</span><span class="k">)</span> !<span class="o">=</span> <span class="s1">'root'</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$RC</span><span class="s2"> Must be root to perform this action !</span><span class="nv">$NC</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="nb">exit</span> 1<span class="p">;</span>
+<span class="k">fi</span>
+</pre>
+</div>
+<div class="section" id="operations-utiles-variables-string">
+<h2>Opérations utiles variables String</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Uppercase ou Lowercase, longueur d'une chaîne
+</span>
+<span class="c1"># variable
+</span><span class="nv">min</span><span class="o">=</span><span class="s1">'un texte en minuscule qui doit apparaître en majuscule'</span>
+<span class="nv">maj</span><span class="o">=</span><span class="s1">'UN TEXTE EN MAJUSCULE QUI DOIT APPARAITRE EN MINUSCULE'</span>
+
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">min</span><span class="p">^^</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">maj</span><span class="p">,,</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;la variable 'min' a une longueur de : </span><span class="si">${#</span><span class="nv">min</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;la variable 'maj' a une longueur de : </span><span class="si">${#</span><span class="nv">maj</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre>
+</div>
+<div class="section" id="parcourir-un-fichier">
+<h2>Parcourir un fichier</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Parcourir un fichier ligne par ligne
+</span><span class="k">while</span> <span class="nb">read</span> line
+<span class="k">do</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$line</span><span class="s2">&quot;</span>
+<span class="k">done</span> &lt; mon_fichier
+</pre>
+</div>
+<div class="section" id="manipuler-les-tableaux">
+<h2>Manipuler les tableaux</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Tableau coloré
+</span><span class="nb">declare</span> -a <span class="nv">colors</span><span class="o">=</span><span class="s1">'(
+                        [0]=&quot;\e[0;m&quot;
+                        [1]=&quot;\e[1;31m&quot;
+                        [2]=&quot;\e[1;32m&quot;
+                        [3]=&quot;\e[1;33m&quot;
+                        [4]=&quot;\e[1;34m&quot;
+                        [5]=&quot;\e[1;35m&quot;
+                   )'</span>
+
+<span class="c1"># Parcourir un tableau
+</span><span class="k">for</span> i in <span class="si">${</span><span class="p">!colors[*]</span><span class="si">}</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="si">${</span><span class="nv">colors</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> waow c'est beau !&quot;</span>
+<span class="k">done</span>
+</pre>
+</div>
+<div class="section" id="creer-des-fonctions">
+<h2>Créer des fonctions</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># création d'une super fonction
+</span>bonjour<span class="o">()</span>
+<span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">&quot;bonjour </span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+bonjour <span class="s2">&quot;mobius&quot;</span>
+</pre>
+</div>
+<div class="section" id="generer-des-mots-de-passe">
+<h2>Générer des mots de passe</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Générer un mot de passe avec x caractères (ici 36)
+</span>cat /dev/urandom <span class="p">|</span> tr -dc <span class="s1">'0-9a-zA-Z!&#64;#$%^&amp;*_+-'</span> <span class="p">|</span> head -c 36
+</pre>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/i-love-bash-1.html">mar. 24 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/scripting.html" title="View all posts in Scripting" rel="category tag">Scripting</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/i-love-bash-1.html" title="Permalink to I love Bash #1" rel="bookmark">I love Bash #1</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="la-fameuse-stdin">
+<h2>La fameuse STDIN</h2>
+<div class="section" id="preambule">
+<h3>Préambule</h3>
+<p>Tout programme informatique est frillant des entrées et sorties en vue d'interagir avec l'utilisateur soit par l'intermédiaire des périphériques <em>d'entrée</em> comme par exemple le <em>clavier</em> ou encore d'afficher le résultat attendu sur un périphérique de <em>sortie</em> comme <em>l'écran</em>. Un problème subsiste, la diversité des sorties potentielles. En effet, la sortie sur un périphérique comme <em>l'écran</em> aura des mécanismes différents que l'enregistrement de données dans un <em>fichier</em>. Voilà
+pourquoi, nos systèmes dérivés d'Unix, pallient cette difficulté de traitement en considérant que tout est <em>fichier</em> (votre connexion, ...). Cette abstraction est dès lors indispensable en vue de faciliter la prise en charge du pluralisme des sorties.</p>
+</div>
+<div class="section" id="faire-pointer-la-sortie-dans-notre-terminal-ou-encore-une-fenetre">
+<h3>Faire pointer la sortie dans notre terminal ou encore une fenêtre</h3>
+<pre class="code bash literal-block">
+$ <span class="nb">echo</span> Ceci est un exemple
+</pre>
+<p>Ce code précédent permet d'afficher dans votre console le texte <em>Ceci est un exemple</em> grâce à la commande <strong>echo</strong>. Cette commande n'affiche pas uniquement du texte mais tout type <em>d'arguments</em> passés (des variables...). Dans le code ci-dessus, vous remarquerez l'absence de guillemets autour de notre chaîne de caractère et ceci est tout à fait normal : le but est avant tout de comprendre le fonctionnement de la commande, ici la commande echo va bel et bien afficher le texte mais ne va en
+réalité pas comprendre qu'il s'agit d'une seule et même chaîne de caractère mais comme trois arguments distincts. Ainsi, si vous faites le test de la commande suivante :</p>
+<pre class="code bash literal-block">
+$ <span class="nb">echo</span> Ceci             est         un exemple
+</pre>
+<p>Tout les espaces ne vont pas être interprétés car les guillemets sont absentes. Ici, bash va comprendre que vous lui soumettez trois arguments et donc séparer les résultats d'un seul espace. Maintenant faites le test suivant :</p>
+<pre class="code bash literal-block">
+$ <span class="nb">echo</span> <span class="s2">&quot;Ceci      est       un exemple&quot;</span>
+</pre>
+<p>Dans ce cas, bash va bien interpréter les espaces par l'intermédiaire des guillemets, signifiant qu'il s'agit d'un seul et même argument. Une autre précision, l'utilisation des guillemets et des apostrophes n'a pas les mêmes répercussions : si vous utilisez des guillemets <strong>&quot; &quot;</strong>, bash va <em>parser</em> autrement dit analyser véritablement le contenu en interprétant la présence d'éventuelle(s) variable(s) mais si vous optez pour des apostrophes alors les variables seront inopérantes.</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># variable
+</span><span class="nv">prenom</span><span class="o">=</span><span class="s1">'Thomas'</span>
+<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$prenom</span><span class="s2">&quot;</span> <span class="c1"># va renvoyer à l'écran &quot;Thomas&quot;
+</span><span class="nb">echo</span> <span class="s1">'$prenom'</span> <span class="c1"># va renvoyer à l'écran $prenom</span>
+</pre>
+<p>Dans la mesure du possible, il faut utiliser les guillemets lorsque cela est vraiment nécessaire sinon des apostrophes pour maximiser la vitesse d'exécution du programme, car oui l'analyse sous-jacente à l'utilisation des guillemets va ralentir votre script. Vous me croyez pas ? Faites donc alors ce test : enregistrez dans un premier fichier <em>guillemets.sh</em> le code suivant :</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="nv">i</span><span class="o">=</span>0
+<span class="nb">time</span> <span class="k">while</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span> -ne <span class="m">50000</span> <span class="o">]</span><span class="p">;</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Ceci est un test de rapidité&quot;</span> 1&gt;/dev/null <span class="c1"># on redirige la sortie standard vers le périphérique null
+</span>    <span class="nb">let</span> <span class="nv">i</span><span class="o">=</span><span class="nv">$i</span>+1
+<span class="k">done</span>
+</pre>
+<p>Maintenant faites la même chose en enregistrant le code suivant dans un autre fichier <em>apostrophes.sh</em>:</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="nv">i</span><span class="o">=</span>0
+<span class="nb">time</span> <span class="k">while</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span> -ne <span class="m">50000</span> <span class="o">]</span><span class="p">;</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="s1">'Ceci est un test de rapidité'</span> 1&gt;/dev/null <span class="c1"># permet de ne pas voir à l'écran les lignes
+</span>    <span class="nb">let</span> <span class="nv">i</span><span class="o">=</span><span class="nv">$i</span>+1
+<span class="k">done</span>
+</pre>
+<p>Faites les commandes suivantes :</p>
+<pre class="code bash literal-block">
+$ bash guillemets.sh
+$ bash apostrophes.sh
+</pre>
+<p>Vous verrez directement la différence de temps d'exécution des deux scripts et l'avantage d'utiliser les guillemets uniquement si le besoin se fait sentir ! pour ma part la différence est la suivante :</p>
+<pre class="code bash literal-block">
+bash apostrophes.sh
+real 0m1.691s
+user 0m1.470s
+sys  0m0.216s
+
+bash guillemets.sh
+real 0m1.808s
+user 0m1.568s
+sys  0m0.235s
+</pre>
+</div>
+<div class="section" id="designons-notre-sortie">
+<h3>Designons notre sortie</h3>
+<p>Une autre commande très utile et dérivée du langage C est la grande, l'impertinente <em>printf</em>. Le fonctionnement est le suivant : le premier argument est une chaîne de format, les arguments suivants sont mis en forme en toute corrélation avec la chaîne de format matérialisée par <strong>%</strong>.</p>
+<pre class="code bash literal-block">
+$ <span class="nb">printf</span> <span class="s1">'%s = %d\n'</span> Code <span class="nv">$?</span>
+</pre>
+<p>Ce code nous permet de récupérer le code de la dernière commande et de mettre en forme à l'écran l'affichage grâce à la commande <em>printf</em>. L'instruction <em>%s</em> permet de préciser qu'il s'agit d'une chaîne de caractère (<em>s</em> pour <em>string</em>) et <em>%d</em> permet de préciser qu'il s'agit d'un nombre (<em>d</em> pour <em>decimal</em>). Enfin le caractère <em>n</em> permet de sauter une ligne dans une interface commande (<em>n</em> pour <em>newline</em>).</p>
+</div>
+<div class="section" id="ecrire-une-chaine-de-caractere-sans-sauter-de-ligne">
+<h3>Ecrire une chaîne de caractère sans sauter de ligne :</h3>
+<p>Les deux instructions <em>echo</em> comme <em>printf</em> permettent de répondre à cette problématique :</p>
+<pre class="code bash literal-block">
+$ <span class="nb">echo</span> -n <span class="s1">'Super exemple'</span> <span class="c1"># -n permet de ne pas sauter de ligne
+</span>$ <span class="nb">echo</span> -e <span class="s1">'Super exemple\c'</span> <span class="c1"># -e permet d'interpréter les séquences d'échappement
+</span>$ <span class="nb">printf</span> <span class="s2">&quot;%s&quot;</span> Super exemple
+</pre>
+</div>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/securite-scripting.html">mar. 24 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/scripting.html" title="View all posts in Scripting" rel="category tag">Scripting</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/securite-scripting.html" title="Permalink to Sécurité scripting" rel="bookmark">Sécurité scripting</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="faire-un-script-securise">
+<h2>Faire un script sécurisé</h2>
+<div class="section" id="regles-generales">
+<h3>Règles générales</h3>
+<ul class="simple">
+<li><strong>Valider</strong> toutes les entrées externes ainsi que toutes les saisies interactives</li>
+<li><strong>Ne jamais</strong> utiliser une instruction <em>eval</em> sur une entrée non sûre</li>
+<li><strong>Utiliser</strong> des fichiers <em>temporaires</em> <strong>sécurisés</strong></li>
+<li><strong>Vérifier</strong> que les programmes <em>exécutables externes</em> sont sûrs</li>
+</ul>
+<div class="section" id="contrer-usurpation-de-l-interpreteur">
+<h4>Contrer usurpation de l'interpréteur</h4>
+<p>Il suffit d'ajouter un tiret à la fin du <em>shebang</em> pour éviter les attaques par usurpation avec les droits administrateur (<strong>setuid root</strong>). En effet, en l'absence du tiret, le système va chercher à interpréter les paramètres qui accompagne l'interpréteur c'est pourquoi le rajout d'un tiret permet de <em>figer</em> le chemin de bash. Attention toutefois, dans certains cas ce <em>shebang</em> peut rencontrer des problèmes de portabilité.</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -</span>
+</pre>
+</div>
+<div class="section" id="fixer-la-variable-path">
+<h4>Fixer la variable $PATH</h4>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># définir un chemin
+</span><span class="nv">PATH</span><span class="o">=</span><span class="s1">'/usr/local/bin:/bin:usr/bin'</span>
+<span class="nb">export</span> PATH
+</pre>
+</div>
+<div class="section" id="se-mefier-toujours-des-alias">
+<h4>Se méfier toujours des alias</h4>
+<p>Un alias malveillant peut conduire à des opérations critiques sur votre système et par corollaire il est impératif de les effacer.</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># supression des alias
+</span><span class="se">\u</span>nalias -a
+</pre>
+<p>En effet, une personne malveillante va chercher à faire exécuter une commande pour obtenir un accès à des données ou des privilèges qui lui sont interdits. Imaginons par exemple que votre commande <em>ls</em> a été modifié par un alias malveillant, il y aura de fortes probabilités que le duperie porte ses fruits. Ainsi, la solution la plus adéquate pour pallier à ce problème de sécurité est de supprimer tous les alias. Notons que le caractère placé en début de commande unalias permet d'éviter
+la programmation d'alias. Voilà à ce quoi par exemple vous êtes exposés si vous n'utilisez pas cette commande :</p>
+<pre class="code bash literal-block">
+$ <span class="nb">alias</span> <span class="nv">pwd</span><span class="o">=</span><span class="nb">echo</span>
+$ <span class="nb">alias</span> <span class="nv">echo</span><span class="o">=</span>ls
+</pre>
+</div>
+<div class="section" id="proteger-la-memoire">
+<h4>Protéger la mémoire</h4>
+<p>Lorsque Bash exécute des commandes, il mémorise l'emplacement de celles qui se trouvent dans la variable $PATH en vue d'accélérer et donc d'optimiser les appels ultérieurs. Ainsi si une personne malveillante réussit à faire exécuter une commande à un utilisateur (voir même au <em>root</em>), il pourra réussir à obtenir des accès ou des privilèges qui lui sont interdits. Voilà pourquoi il nous faut utiliser la commande <strong>hash -r</strong> pour effacer les commandes mémorisées.</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># effacer toutes les commandes enregistrées en mémoire
+</span><span class="nb">hash</span> -r
+</pre>
+</div>
+</div>
+</div>
+<div class="section" id="recapitulatif-d-un-script-securise">
+<h2>Récapitulatif d'un script sécurisé :</h2>
+<p>Voici le code source d'un script convenablement <strong>sécurisé</strong> :</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -r
+</span>
+<span class="c1">#--------------------------------------------------------------------------------
+# MODELE SCRIPT SECURISE
+#--------------------------------------------------------------------------------
+</span>
+<span class="c1"># Chemin PATH
+</span><span class="nv">PATH</span><span class="o">=</span><span class="s1">'/usr/local/bin:/bin:/usr/bin'</span>
+<span class="se">\e</span>xport PATH
+
+<span class="c1"># Suppression des alias
+</span><span class="se">\u</span>nalias -a
+
+<span class="c1"># Suppression des commandes mémorisées
+</span><span class="nb">hash</span> -r
+
+<span class="c1"># Désactivation des fichiers core
+</span><span class="nb">ulimit</span> -H -c <span class="m">0</span> --
+
+<span class="c1"># IFS sécurisé
+</span><span class="nv">IFS</span><span class="o">=</span><span class="s1">$' \t\n'</span>
+
+<span class="c1"># Protection umask
+</span><span class="nv">UMASK</span><span class="o">=</span>002
+<span class="nb">umask</span> <span class="nv">$UMASK</span>
+
+<span class="k">until</span> <span class="o">[</span> -n <span class="s2">&quot;</span><span class="nv">$rep_temp</span><span class="s2">&quot;</span> -a ! -d <span class="s2">&quot;</span><span class="nv">$rep_temp</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nv">rep_temp</span><span class="o">=</span><span class="s2">&quot;/tmp/prefixe.</span><span class="si">${</span><span class="nv">RANDOM</span><span class="si">}${</span><span class="nv">RANDOM</span><span class="si">}${</span><span class="nv">RANDOM</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+mkdir -p -m <span class="m">0700</span> <span class="nv">$rep_temp</span> <span class="se">\
+</span>    <span class="o">||</span> <span class="o">(</span><span class="nb">echo</span> <span class="s2">&quot;Erreur : impossible de créer le répertoire temporaire&quot;</span> <span class="se">\
+</span>        <span class="s2">&quot;'</span><span class="nv">$rep_temp</span><span class="s2">' : </span><span class="nv">$?</span><span class="s2">&quot;</span><span class="p">;</span> <span class="nb">exit</span> 100<span class="o">)</span>
+
+<span class="c1"># Nettoyer les fichiers temporaires
+</span><span class="nv">fich_temp</span><span class="o">=</span><span class="s2">&quot;rm -rf </span><span class="nv">$rep_temp</span><span class="s2">&quot;</span>
+<span class="nb">trap</span> <span class="s2">&quot;</span><span class="nv">$fich_temp</span><span class="s2">&quot;</span> ABRT EXIT HUP INT QUIT
+</pre>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/le-graal-retrouve-bash.html">dim. 22 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/scripting.html" title="View all posts in Scripting" rel="category tag">Scripting</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/le-graal-retrouve-bash.html" title="Permalink to Le graal retrouvé : BASH" rel="bookmark">Le graal retrouvé : <strong>BASH</strong></a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="prelude">
+<h2>Prélude</h2>
+<div class="section" id="qu-est-ce-que-le-shell-bash">
+<h3>Qu'est-ce que le shell bash ?</h3>
+<p>Toutes les distributions <strong>GNU/LINUX</strong> de nos jours, utilisent des <strong>environnement graphiques</strong> sophistiqués, facilitant l'usage du système d'exploitation pour l'utilisateur. Ainsi, toutes les tâches quotidiennes deviennent aisées à réaliser sans mettre véritablement les mains dans le <em>cambouis</em>. Imaginons par exemple qu'un utilisateur souhaite copier un fichier dans un autre dossier que celui dans lequel il se trouve actuellement. Pour se faire il suffira qu’il le sélectionne à l’aide de sa souris, qu’il clique du droit sur ce fichier, sélectionnera copier puis ira dans l’arborescence choisie pour aller le coller. Ainsi, c’est <strong>l’abstraction totale des instructions en console</strong> qui est permise par <strong>l’interface graphique</strong> (<em>GUI</em> en anglais pour <em>Graphical User Interface</em>). Mais, dès lors qu’un utilisateur souhaitera utiliser, manipuler des fonctions complexes inhérentes au système d’exploitation, il ne pourra recourir qu’à de rares occasions à l’utilisation de l’interface graphique, l’utilisation de la ligne de commande (dans un jargon plus informatique on parlera de <em>CLI</em> pour <em>Command Line Interface</em>) s’imposera d’elle-même. C’est la raison de ce tutoriel, vous expliquer en détails (du moins j’essayerai) le fonctionnement de <strong>l’interpréteur de commandes</strong> (appelé couramment <em>shell</em>) <strong>Bash</strong>, qui deviendra un allié puissant pour intéragir avec le noyau du système (encore une fois dans un jargon plus informatique le noyau est dit le <strong>kernel</strong> soit le coeur de votre système d’exploitation). En résumé, le <strong>shell</strong> est la <em>coquille du noyau</em>, permettant de dialoguer directement avec lui, en lui soumettant des commandes, des instructions précises à exécuter. Avant de commencer, il faut savoir que ce tutoriel se dédie spécifiquement au <strong>shell Bash</strong>, car oui en réalité pléthore de shells sont disponibles pour intérargir avec votre système, disposant chacun de caractéristiques propres mais qui dans l’ensemble adoptent une logique similaire. Voici quelques autres coquilles, shells utilisables sous un système GNU/Linux :</p>
+<ul class="simple">
+<li><em>sh</em> : créé par <strong>Ken Thompson</strong> en 1971 qui marque le premier shell disponible sur tous les systèmes Unix (<strong>à ne pas confondre avec Linux</strong>)</li>
+<li><em>sh</em> : Bourne Shell remplaçant le shell de <strong>Ken Thompson</strong></li>
+<li><em>bash</em> : <strong>Bourne Again Shell</strong> l'objet de notre étude</li>
+<li><em>ksh</em> : Korn Shell</li>
+<li><em>csh</em> : C Shell</li>
+<li><em>zsh</em> : Z Shell</li>
+<li>[...] et bien d'autres encore</li>
+</ul>
+<p>Si j’ai opté pour vous expliquer le shell Bash, c’est tout simplement par soucis d’usage courant : en effet, ce shell est sur la plupart des distributions GNU/Linux le shell par défaut. En fait, le bash est le substrat du shell sh (le Bourne Shell, le deuxième élément de notre liste ci-dessus), agrémentés de fonctionnalités empruntés à ksh et csh. Pour information, le bash n’est pas uniquement présent ou utilisable que sur les distributions GNU/Linux mais aussi il sera efficient sur MacOS ainsi que Windows. On dira alors que bash est multi-plateforme. Les shells et ce en totale abstraction de leur type (que ce soit bash, ksh …) vont être exploitables au sein d’un terminal, comprenons par là une machine ne comportant que le strict nécessaire pour interpréter des instructions saisies par l’intermédiaire du clavier (périphérique dit d’entrée ou en anglais input device), et d’en visualiser les résultats sur une sortie écran (périphérique de sortie ou en anglais output device). Pour les curieux, aujourd’hui nous distinguons deux types de terminaux : les vrais, ceux ayant une réalité physique (en somme de vrais périphériques, matériels) et des pseudo terminaux, reposant sur des programmes simulant le fonctionnement des terminaux physiques. Ainsi, sous une distribution GNU/Linux vous trouverez des consoles virtuelles textuelles (par exemple si votre distribution n’incorpore pas d’environnement graphique, votre système d’exploitation démarerra  sur cette console virtuelle), et des consoles graphiques (xterm, eterm ou konsole) qui sont des émulateurs s’utilisant par l’intermédiaire d’un environnement graphique (présence de fenêtres/composants graphiques).
+Une dernière chose, avant de commencer notre périple, comme je l’ai dis précédemment, le shell est toujours en attente d’instructions saisies par l’intermédiaire de votre clavier pour en afficher les résultats sur votre périphérique de sortie, l’écran, il faudra néanmoins apprendre à parler le langage du shell sans quoi, le noyau (kernel) ne saurait interpréter votre requête et n’affichera dès lors qu’une série d’erreurs à l’écran. Donc nous allons apprendre le langage qui vous permettra d’utiliser le shell et de dialoguer correctement avec votre noyau sans être insulter par des erreurs incessantes.</p>
+</div>
+<div class="section" id="quand-le-shell-nous-invite-chez-lui">
+<h3>Quand le shell nous invite chez lui</h3>
+<p>Comme nous l’avons explicité précédemment, le shell est toujours en proie à des discussions nouvelles avec l’utilisateur, attendant des saisies de ce-dernier par son clavier. Dans un jargon plus informatique nous qualifions souvent le shell d’invite de commande (prompt en anglais). Ainsi, dès que vous ouvrez un terminal, vous pouvez voir un petit curseur clignotant, matérialisant votre saisie.
+Ne vous inquiétez pas si votre shell n’a pas exactement la même apparence que le mien, je l’ai modifié afin qu’il affiche uniquement les informations dont j’ai besoin. Nous apprendrons par ailleurs plus loin comment le personnaliser à sa libre convenance. Bon, théoriquement votre terminal une fois ouvert vous affiche une ligne de ce genre :</p>
+<img alt="" src="images/1.gif" />
+<p>Ne vous inquiétez pas si votre shell n’a pas exactement la même apparence que le mien, je l’ai modifié afin qu’il affiche uniquement les informations dont j’ai besoin. Nous apprendrons par ailleurs plus loin comment le personnaliser à sa libre convenance. Bon, théoriquement votre terminal une fois ouvert vous affiche une ligne de ce genre :</p>
+<pre class="code bash literal-block">
+antoine&#64;learntux:/home/Desktop&gt;
+</pre>
+<p>Cette ligne vous donne plusieurs informations, la première l’utilisateur utilisant actuellement le terminal, c’est l’information la plus à gauche (ici l’utilisateur est antoine que j’ai surligné en rouge), ensuite le fameux « &#64; » signifiant tout simplement chez (pour information le &#64; provient du mot anglais « at »), puis apparaît le nom d’hôte (hostname en anglais) soit le nom de la machine utilisée (ici la machine s’appelle learntux que j’ai surligné en bleu), puis vient s’ajouter la ligne /home/Desktop qui symbolise le chemin où vous trouvez actuellement (ici mon terminal est ouvert dans le dossier Desktop qui est lui-même contenu dans le dossier home). Donc traduisons maintenant tout ce que je vous ai expliqué en français : un utilisateur antoine utilise sa machine portant le nom de learntux et est entrain de manipuler le terminal actuellement ouvert dans le dossier Desktop (je n’ai pas expliqué le symbole. Mais .. qu’est-ce que ce dernier symbole &gt; ? C’est très simple, c’est ce que l’on appelle la terminaison standard du bash qui est inhérente à tout utilisateur lambda (autrement dit l’utilisateur ici antoine est un vulgaire gueux qui n’a d’autorité, de droits spécifiques sur la machine, il est limité sur sa propre machine).</p>
+<ul class="simple">
+<li><strong>$</strong> indiquant encore une fois que l’utilisateur est un vulgaire gueux n’ayant pas des droits particuliers sur la machine</li>
+<li><strong>#</strong> indique quant à lui que l’utilisateur est à son apogée sociale, c’est le root (administrateur) de la machine, disposant de droits exclusifs sur sa machine, lui conférant sens du contrôle et maîtrise en son art. Il faudra toujours veiller à n’utiliser ce compte que lorsque cela est véritablement nécessaire (pour maximiser ainsi la sécurité de son système d’exploitation).</li>
+</ul>
+<p>Un autre caractère spécifique est à connaître mais celui-ci n’ayant plus de rapport avec l’utilisateur mais avec l’emplacement où vous vous trouvez:</p>
+<ul class="simple">
+<li><strong>~</strong> le caractère tilde (pour le faire ALT Gr + 2) indiquant que vous vous trouvez dans votre répertoire personnel (/home/nomutilisateur par exemple le ~ pour notre utilisateur antoine de tout à l’heure est équivalent à /home/antoine)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="experimentation-concrete">
+<h2>Expérimentation concrète</h2>
+<p>Je vous propose maintenant d’expérimenter concrètement et de vous confronter à cette fameuse bête noire : le terminal. Alors, je vais partir du principe que vous utilisez une distribution GNU/Linux dite « <em>User-Friendly</em> » c’est à dire facile pour l’utilisateur et répandue d’une manière courante chez les utilisateurs non professionnels. Ainsi, si vous utilisez Ubuntu, ou l’une de ses variantes (xubuntu, kubuntu, lubuntu …) la procédure sera la suivante :</p>
+<ol class="arabic simple">
+<li>Utiliser le raccourci <strong>CTRL+ALT+T</strong> qui théoriquement ouvrira un terminal à l’écran</li>
+<li>Presser la touche <strong>ALT+F2</strong> et écrire : <strong>xfce4-terminal</strong> si votre distribution est xubuntu puis valider, <strong>konsole</strong> si vous utiliser Kubuntu, <strong>lxde-terminal</strong> si votre distribution est Lubuntu</li>
+<li>Parcourir le menu général de votre distribution GNU/Linux et trouver l’un des mots suivants : <strong>console</strong> / <strong>konsole</strong> / <strong>terminal</strong></li>
+</ol>
+<p>Voilà, normalement au moment où vous lisez ces lignes, une fenêtre sombre et mystérieuse est apparue à l’écran. Mise en garde, si vous choisissez de continuer la lecture de ce tutoriel, vous ne pourrez plus jamais continuer d’utiliser votre système GNU/Linux uniquement par l’intermédiaire de votre environnement graphique, la console deviendra votre meilleur ami. Bon je vous propose dès maintenant de dialoguer avec votre ami, car effectivement le bash est un langage interprété et non compilé, autrement dit directement compris au sein d’un interpréteur (shell bash) utilisable dans la console à l’écran. Ainsi, à la grande différence des langages compilés (à l’instar du C, Java …), il n’y a pas une étape intermédiaire demandant de retranscrire le code en langage binaire (on parle d’absence de compilation). Essayer par exemple de taper la commande suivante et valider par la touche &lt;Entrée&gt; :</p>
+<pre class="code bash literal-block">
+$ <span class="nb">echo</span> <span class="s2">&quot;Le bash trop cool&quot;</span>
+</pre>
+<p>Le résultat suivant apparaît dès lors à la console :</p>
+<img alt="" src="images/2.png" />
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="navigation">
+</div>
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://getpelican.com">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

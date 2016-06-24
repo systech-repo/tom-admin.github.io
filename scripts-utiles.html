@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+		<title>tom-admin &mdash; Scripts utiles</title>
+		<meta charset="utf-8" />
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="https://tom-admin.github.io/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/atom+xml"
+			title="tom-admin — Flux Atom"
+			href="https://tom-admin.github.io/" /> 
+		<!--[if lte IE 8]><script src="https://tom-admin.github.io/theme/js/html5shiv.js"></script><![endif]-->
+</head>
+
+<body class="home blog custom-background " >
+	<div id="container">
+		<div id="header">
+				<h1 id="site-title"><a href="https://tom-admin.github.io">tom-admin</a></h1>
+<h2 id="site-description">#!/dev/tom-admin</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/astuces.html">Astuces</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/linux.html">Linux</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/memento.html">Memento</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/pelican.html">Pelican</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/python.html">Python</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/revisions.html">Révisions</a></li>
+						<li class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/scripting.html">Scripting</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/scripts-utiles.html">mer. 25 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/scripting.html" title="View all posts in Scripting" rel="category tag">Scripting</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/scripts-utiles.html" title="Permalink to Scripts utiles" rel="bookmark">Scripts utiles</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="verification-root">
+<h2>Vérification root</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Be root or not to be
+</span>
+<span class="c1"># Toutes les lignes contenant un $(commande) font appel à un sous-shell.
+# Une autre solution consiste à utiliser les back-quotes `ma commande` qui ne feront toutefois pas appel à un sous-shell (rapidité moindre)
+# exemple : $(whoami) est &quot;équivalent&quot; dans le résultat à l'utilisation de `whoami`
+</span>
+<span class="c1"># variables couleurs
+</span><span class="nv">RC</span><span class="o">=</span><span class="s1">'\e[1;31m'</span>
+<span class="nv">NC</span><span class="o">=</span><span class="s1">'\e[0;m'</span>
+
+<span class="c1"># vérification avec USER ID
+</span><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$UID</span><span class="k">)</span> -ne <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$RC</span><span class="s2"> Must be root to perform this action !</span><span class="nv">$NC</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="nb">exit</span> 1<span class="p">;</span>
+<span class="k">fi</span>
+
+<span class="c1"># vérification avec LOGNAME
+</span><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$LOGNAME</span><span class="k">)</span> !<span class="o">=</span> <span class="s1">'root'</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$RC</span><span class="s2"> Must be root to perform this action !</span><span class="nv">$NC</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="nb">exit</span> 1<span class="p">;</span>
+<span class="k">fi</span>
+
+<span class="c1"># vérification avec WHOAMI
+</span><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span>whoami<span class="k">)</span> !<span class="o">=</span> <span class="s1">'root'</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$RC</span><span class="s2"> Must be root to perform this action !</span><span class="nv">$NC</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="nb">exit</span> 1<span class="p">;</span>
+<span class="k">fi</span>
+
+<span class="c1"># vérification avec $USER
+</span><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$USER</span><span class="k">)</span> !<span class="o">=</span> <span class="s1">'root'</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$RC</span><span class="s2"> Must be root to perform this action !</span><span class="nv">$NC</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="nb">exit</span> 1<span class="p">;</span>
+<span class="k">fi</span>
+</pre>
+</div>
+<div class="section" id="operations-utiles-variables-string">
+<h2>Opérations utiles variables String</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Uppercase ou Lowercase, longueur d'une chaîne
+</span>
+<span class="c1"># variable
+</span><span class="nv">min</span><span class="o">=</span><span class="s1">'un texte en minuscule qui doit apparaître en majuscule'</span>
+<span class="nv">maj</span><span class="o">=</span><span class="s1">'UN TEXTE EN MAJUSCULE QUI DOIT APPARAITRE EN MINUSCULE'</span>
+
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">min</span><span class="p">^^</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">maj</span><span class="p">,,</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;la variable 'min' a une longueur de : </span><span class="si">${#</span><span class="nv">min</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;la variable 'maj' a une longueur de : </span><span class="si">${#</span><span class="nv">maj</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre>
+</div>
+<div class="section" id="parcourir-un-fichier">
+<h2>Parcourir un fichier</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Parcourir un fichier ligne par ligne
+</span><span class="k">while</span> <span class="nb">read</span> line
+<span class="k">do</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$line</span><span class="s2">&quot;</span>
+<span class="k">done</span> &lt; mon_fichier
+</pre>
+</div>
+<div class="section" id="manipuler-les-tableaux">
+<h2>Manipuler les tableaux</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Tableau coloré
+</span><span class="nb">declare</span> -a <span class="nv">colors</span><span class="o">=</span><span class="s1">'(
+                        [0]=&quot;\e[0;m&quot;
+                        [1]=&quot;\e[1;31m&quot;
+                        [2]=&quot;\e[1;32m&quot;
+                        [3]=&quot;\e[1;33m&quot;
+                        [4]=&quot;\e[1;34m&quot;
+                        [5]=&quot;\e[1;35m&quot;
+                   )'</span>
+
+<span class="c1"># Parcourir un tableau
+</span><span class="k">for</span> i in <span class="si">${</span><span class="p">!colors[*]</span><span class="si">}</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="si">${</span><span class="nv">colors</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> waow c'est beau !&quot;</span>
+<span class="k">done</span>
+</pre>
+</div>
+<div class="section" id="creer-des-fonctions">
+<h2>Créer des fonctions</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># création d'une super fonction
+</span>bonjour<span class="o">()</span>
+<span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">&quot;bonjour </span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+bonjour <span class="s2">&quot;mobius&quot;</span>
+</pre>
+</div>
+<div class="section" id="generer-des-mots-de-passe">
+<h2>Générer des mots de passe</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Générer un mot de passe avec x caractères (ici 36)
+</span>cat /dev/urandom <span class="p">|</span> tr -dc <span class="s1">'0-9a-zA-Z!&#64;#$%^&amp;*_+-'</span> <span class="p">|</span> head -c 36
+</pre>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://getpelican.com">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

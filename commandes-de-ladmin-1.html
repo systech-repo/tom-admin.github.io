@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+		<title>tom-admin &mdash; Commandes de l'admin #1</title>
+		<meta charset="utf-8" />
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="https://tom-admin.github.io/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/atom+xml"
+			title="tom-admin — Flux Atom"
+			href="https://tom-admin.github.io/" /> 
+		<!--[if lte IE 8]><script src="https://tom-admin.github.io/theme/js/html5shiv.js"></script><![endif]-->
+</head>
+
+<body class="home blog custom-background " >
+	<div id="container">
+		<div id="header">
+				<h1 id="site-title"><a href="https://tom-admin.github.io">tom-admin</a></h1>
+<h2 id="site-description">#!/dev/tom-admin</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/astuces.html">Astuces</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/linux.html">Linux</a></li>
+						<li class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/memento.html">Memento</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/pelican.html">Pelican</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/python.html">Python</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/revisions.html">Révisions</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/scripting.html">Scripting</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/commandes-de-ladmin-1.html">lun. 23 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/memento.html" title="View all posts in Memento" rel="category tag">Memento</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/commandes-de-ladmin-1.html" title="Permalink to Commandes de l'admin #1" rel="bookmark">Commandes de l'admin #1</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="adduser-options-utilisateur-group">
+<h2>adduser [options] <strong>utilisateur</strong> [group]</h2>
+<p>Cette commande permet à l'administrateur de <strong>rajouter un utilisateur</strong> sur le système. Nous allons voir les principaux arguments que <strong>adduser</strong> peut prendre (<em>liste non exhaustive</em>)</p>
+<ul class="simple">
+<li><strong>--home</strong> permet de définir l'emplacement précis du dossier de l'utilisateur (par défaut <strong>/home/nom_du_user/</strong>)</li>
+<li><strong>--no-create-home</strong> permet de ne pas créer un dossier lors de la création de l'utilisateur</li>
+<li><strong>--system</strong> permet de préciser que l'utilisateur est un utilisateur système</li>
+<li><strong>--shell</strong> permet de préciser le shell qui sera utilisé par l'utilisateur</li>
+<li><strong>--group</strong> permet de créer le groupe de l'utilisateur</li>
+<li><strong>--ingroup</strong> permet de définir le groupe principal de l'utilisateur</li>
+<li><strong>--uid</strong> permet de définir le <em>user id</em> soit l'identifiant de l'utilisateur</li>
+<li><strong>--gid</strong> permet de définir le <em>group id</em> soit l'identifiant du groupe de l'utilisateur</li>
+<li><strong>--disabled-password</strong> la commande passwd n'est pas exécutée le compte sera dès lors verrouillé</li>
+<li><strong>--disabled-login</strong> permet de désactiver l'authentification par mot de passe, seul l'accès avec clés SSH RSA est opérant</li>
+</ul>
+</div>
+<div class="section" id="apt-cache-options-commande-paquet">
+<h2>apt-cache [options] <em>commande</em> <strong>paquet</strong></h2>
+<p>Cette commande permet d'obtenir des <strong>informations sur les paquets</strong> issus de la base de donnée Internet et du cache mis à jour depuis les sources (<em>/etc/apt/sources.list</em>).</p>
+<ul class="simple">
+<li><strong>add</strong> permet de rajouter un paquet au cache</li>
+<li><strong>search</strong> permet d'effectuer une recherche par mot-clés dans les noms et en-têtes des paquets connus</li>
+<li><strong>stats</strong> permet de récupérer des informations statistiques de base sur le cache utilisé</li>
+<li><strong>show</strong> permet de récupérer des informations descriptives sur le paquet ainsi que sur ses dépendances</li>
+<li><strong>depends</strong> permet de récupérer l'ensemble des dépendances du paquets</li>
+<li><strong>pkgnames</strong> permet de lister l'ensembles des noms des paquets</li>
+<li><strong>-i</strong> permet de n'afficher que les dépendances importantes</li>
+</ul>
+</div>
+<div class="section" id="apt-cdrom-options-d-commande">
+<h2>apt-cdrom [options] [-d] <em>commande</em></h2>
+<p>cette commande permet de <strong>rajouter un nouveau cd-rom</strong> à la liste des sources d'installation disponibles.</p>
+<ul class="simple">
+<li><strong>add</strong> ajoute un cd-rom à la liste des sources</li>
+<li><strong>-d point de montage</strong> spécifie le point de montage du cd-rom à analyser</li>
+<li><strong>-f</strong> permet de copier rapidement (part du principe que les paquets sont valides) en ne procédant à aucune vérification</li>
+<li><strong>-r</strong> permet de changer le nom d'un disque</li>
+</ul>
+</div>
+<div class="section" id="apt-get-options-commande-paquet">
+<h2>apt-get [options] <em>commande</em> <strong>paquet</strong></h2>
+<p>cette commande permet d'interagir avec la <strong>gestion des paquets</strong>.</p>
+<ul class="simple">
+<li><strong>update</strong> permet de mettre à jour la base de données des paquets du cache (<em>/etc/apt/sources.list</em>) en décrivant les paquets</li>
+<li><strong>install</strong> permet d'installer un paquet ou plusieurs paquets</li>
+<li><strong>remove</strong> permet de supprimer un paquet ou plusieurs paquets</li>
+<li><strong>check</strong> permet de mettre à jour le cache des paquets mais aussi de rechercher les dépendances cassées</li>
+<li><strong>source</strong> permet de récupérer la source d'un paquet</li>
+<li><strong>clean</strong> permet de nettoyer le dépôt local de paquets téléchargé</li>
+<li><strong>-d</strong> permet de télécharger le ou les paquets sans procéder à l'installation ni la décompression</li>
+<li><strong>-f</strong> tenter de corriger les dépendances cassées</li>
+<li><strong>-s</strong> permet de simuler une commande sans effectuer réellement les opérations à effectuer</li>
+<li><strong>-y</strong> permet de valider automatiquement les questions (lors des installations, suppressions...)</li>
+<li><strong>-q</strong> permet d'activer le quiet mode autrement dit un mode moins verbueux</li>
+<li><strong>--no-upgrade</strong> permet de ne pas mettre à jour les paquets installés</li>
+<li><strong>--purge</strong> permet de supprimer les fichiers de configuration d'un paquet</li>
+<li><strong>--reinstall</strong> permet de réinstaller un paquet dans sa dernière version</li>
+</ul>
+</div>
+<div class="section" id="apt-setup">
+<h2>apt-setup</h2>
+<p>cette commande permet <strong>d'ajouter des sources</strong> d'installation supplémentaire.</p>
+</div>
+<div class="section" id="aptitude">
+<h2>aptitude</h2>
+<p>cette commande permet de fournir une interface en mode console en vue de faciliter la <strong>gestion des paquets</strong>.</p>
+</div>
+<div class="section" id="at-options-date">
+<h2>at [options] <em>date</em></h2>
+<p>Cette commande permet de <strong>planifier l'exécution</strong> unique d'un script ou d'une commande.</p>
+<ul class="simple">
+<li><strong>-f</strong> permet d'inclure un fichier (script)</li>
+<li><strong>atq</strong> permet de lister les commandes en attente d'exécution</li>
+<li><strong>atrm</strong> permet de supprimer une tâche en attente</li>
+</ul>
+</div>
+<div class="section" id="base-config">
+<h2>base-config</h2>
+<p>Cette commande permet de <strong>relancer le processus de post-installation</strong> pour une reconfiguration.</p>
+</div>
+
+		</div> <!--/#entry-content-->
+    		<span class="tag-links"><strong>Tagged</strong>
+ <a href="https://tom-admin.github.io/tag/administration.html" rel="tag">administration</a>,  <a href="https://tom-admin.github.io/tag/commandes.html" rel="tag">commandes</a>,  <a href="https://tom-admin.github.io/tag/debian.html" rel="tag">debian</a>,  <a href="https://tom-admin.github.io/tag/memento.html" rel="tag">memento</a>    		</span>
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://getpelican.com">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

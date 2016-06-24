@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+		<title>tom-admin &mdash; Sécurité scripting</title>
+		<meta charset="utf-8" />
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="https://tom-admin.github.io/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/atom+xml"
+			title="tom-admin — Flux Atom"
+			href="https://tom-admin.github.io/" /> 
+		<!--[if lte IE 8]><script src="https://tom-admin.github.io/theme/js/html5shiv.js"></script><![endif]-->
+</head>
+
+<body class="home blog custom-background " >
+	<div id="container">
+		<div id="header">
+				<h1 id="site-title"><a href="https://tom-admin.github.io">tom-admin</a></h1>
+<h2 id="site-description">#!/dev/tom-admin</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/astuces.html">Astuces</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/linux.html">Linux</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/memento.html">Memento</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/pelican.html">Pelican</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/python.html">Python</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/revisions.html">Révisions</a></li>
+						<li class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/scripting.html">Scripting</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+
+<div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/securite-scripting.html">mar. 24 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/scripting.html" title="View all posts in Scripting" rel="category tag">Scripting</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/securite-scripting.html" title="Permalink to Sécurité scripting" rel="bookmark">Sécurité scripting</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="faire-un-script-securise">
+<h2>Faire un script sécurisé</h2>
+<div class="section" id="regles-generales">
+<h3>Règles générales</h3>
+<ul class="simple">
+<li><strong>Valider</strong> toutes les entrées externes ainsi que toutes les saisies interactives</li>
+<li><strong>Ne jamais</strong> utiliser une instruction <em>eval</em> sur une entrée non sûre</li>
+<li><strong>Utiliser</strong> des fichiers <em>temporaires</em> <strong>sécurisés</strong></li>
+<li><strong>Vérifier</strong> que les programmes <em>exécutables externes</em> sont sûrs</li>
+</ul>
+<div class="section" id="contrer-usurpation-de-l-interpreteur">
+<h4>Contrer usurpation de l'interpréteur</h4>
+<p>Il suffit d'ajouter un tiret à la fin du <em>shebang</em> pour éviter les attaques par usurpation avec les droits administrateur (<strong>setuid root</strong>). En effet, en l'absence du tiret, le système va chercher à interpréter les paramètres qui accompagne l'interpréteur c'est pourquoi le rajout d'un tiret permet de <em>figer</em> le chemin de bash. Attention toutefois, dans certains cas ce <em>shebang</em> peut rencontrer des problèmes de portabilité.</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -</span>
+</pre>
+</div>
+<div class="section" id="fixer-la-variable-path">
+<h4>Fixer la variable $PATH</h4>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># définir un chemin
+</span><span class="nv">PATH</span><span class="o">=</span><span class="s1">'/usr/local/bin:/bin:usr/bin'</span>
+<span class="nb">export</span> PATH
+</pre>
+</div>
+<div class="section" id="se-mefier-toujours-des-alias">
+<h4>Se méfier toujours des alias</h4>
+<p>Un alias malveillant peut conduire à des opérations critiques sur votre système et par corollaire il est impératif de les effacer.</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># supression des alias
+</span><span class="se">\u</span>nalias -a
+</pre>
+<p>En effet, une personne malveillante va chercher à faire exécuter une commande pour obtenir un accès à des données ou des privilèges qui lui sont interdits. Imaginons par exemple que votre commande <em>ls</em> a été modifié par un alias malveillant, il y aura de fortes probabilités que le duperie porte ses fruits. Ainsi, la solution la plus adéquate pour pallier à ce problème de sécurité est de supprimer tous les alias. Notons que le caractère placé en début de commande unalias permet d'éviter
+la programmation d'alias. Voilà à ce quoi par exemple vous êtes exposés si vous n'utilisez pas cette commande :</p>
+<pre class="code bash literal-block">
+$ <span class="nb">alias</span> <span class="nv">pwd</span><span class="o">=</span><span class="nb">echo</span>
+$ <span class="nb">alias</span> <span class="nv">echo</span><span class="o">=</span>ls
+</pre>
+</div>
+<div class="section" id="proteger-la-memoire">
+<h4>Protéger la mémoire</h4>
+<p>Lorsque Bash exécute des commandes, il mémorise l'emplacement de celles qui se trouvent dans la variable $PATH en vue d'accélérer et donc d'optimiser les appels ultérieurs. Ainsi si une personne malveillante réussit à faire exécuter une commande à un utilisateur (voir même au <em>root</em>), il pourra réussir à obtenir des accès ou des privilèges qui lui sont interdits. Voilà pourquoi il nous faut utiliser la commande <strong>hash -r</strong> pour effacer les commandes mémorisées.</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># effacer toutes les commandes enregistrées en mémoire
+</span><span class="nb">hash</span> -r
+</pre>
+</div>
+</div>
+</div>
+<div class="section" id="recapitulatif-d-un-script-securise">
+<h2>Récapitulatif d'un script sécurisé :</h2>
+<p>Voici le code source d'un script convenablement <strong>sécurisé</strong> :</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -r
+</span>
+<span class="c1">#--------------------------------------------------------------------------------
+# MODELE SCRIPT SECURISE
+#--------------------------------------------------------------------------------
+</span>
+<span class="c1"># Chemin PATH
+</span><span class="nv">PATH</span><span class="o">=</span><span class="s1">'/usr/local/bin:/bin:/usr/bin'</span>
+<span class="se">\e</span>xport PATH
+
+<span class="c1"># Suppression des alias
+</span><span class="se">\u</span>nalias -a
+
+<span class="c1"># Suppression des commandes mémorisées
+</span><span class="nb">hash</span> -r
+
+<span class="c1"># Désactivation des fichiers core
+</span><span class="nb">ulimit</span> -H -c <span class="m">0</span> --
+
+<span class="c1"># IFS sécurisé
+</span><span class="nv">IFS</span><span class="o">=</span><span class="s1">$' \t\n'</span>
+
+<span class="c1"># Protection umask
+</span><span class="nv">UMASK</span><span class="o">=</span>002
+<span class="nb">umask</span> <span class="nv">$UMASK</span>
+
+<span class="k">until</span> <span class="o">[</span> -n <span class="s2">&quot;</span><span class="nv">$rep_temp</span><span class="s2">&quot;</span> -a ! -d <span class="s2">&quot;</span><span class="nv">$rep_temp</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nv">rep_temp</span><span class="o">=</span><span class="s2">&quot;/tmp/prefixe.</span><span class="si">${</span><span class="nv">RANDOM</span><span class="si">}${</span><span class="nv">RANDOM</span><span class="si">}${</span><span class="nv">RANDOM</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+mkdir -p -m <span class="m">0700</span> <span class="nv">$rep_temp</span> <span class="se">\
+</span>    <span class="o">||</span> <span class="o">(</span><span class="nb">echo</span> <span class="s2">&quot;Erreur : impossible de créer le répertoire temporaire&quot;</span> <span class="se">\
+</span>        <span class="s2">&quot;'</span><span class="nv">$rep_temp</span><span class="s2">' : </span><span class="nv">$?</span><span class="s2">&quot;</span><span class="p">;</span> <span class="nb">exit</span> 100<span class="o">)</span>
+
+<span class="c1"># Nettoyer les fichiers temporaires
+</span><span class="nv">fich_temp</span><span class="o">=</span><span class="s2">&quot;rm -rf </span><span class="nv">$rep_temp</span><span class="s2">&quot;</span>
+<span class="nb">trap</span> <span class="s2">&quot;</span><span class="nv">$fich_temp</span><span class="s2">&quot;</span> ABRT EXIT HUP INT QUIT
+</pre>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post-->
+
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://getpelican.com">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

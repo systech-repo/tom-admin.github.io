@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+		<title>tom-admin</title>
+		<meta charset="utf-8" />
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="https://tom-admin.github.io/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/atom+xml"
+			title="tom-admin — Flux Atom"
+			href="https://tom-admin.github.io/" /> 
+		<!--[if lte IE 8]><script src="https://tom-admin.github.io/theme/js/html5shiv.js"></script><![endif]-->
+</head>
+
+<body class="home blog custom-background " >
+	<div id="container">
+		<div id="header">
+				<h1 id="site-title"><a href="https://tom-admin.github.io">tom-admin</a></h1>
+<h2 id="site-description">#!/dev/tom-admin</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/astuces.html">Astuces</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/linux.html">Linux</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/memento.html">Memento</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/pelican.html">Pelican</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/python.html">Python</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/revisions.html">Révisions</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/scripting.html">Scripting</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+		</div>
+	
+		<div id="contents">
+<div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/gnulinux-networking-technique.html">ven. 11 septembre 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/revisions.html" title="View all posts in Révisions" rel="category tag">Révisions</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/gnulinux-networking-technique.html" title="Permalink to GNU/Linux Networking - Technique" rel="bookmark">GNU/Linux Networking - Technique</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="configuration-du-materiel">
+<h2>Configuration du matériel</h2>
+<p>Aujourd'hui, la prise en charge du matériel réseau pour la plupart des distributions GNU/Linux n'est plus un problème, particulièrement la gestion des interfaces réseau filaires qui seront généralement fonctionnelles post-installation. La prise en charge de la technologie <strong>wireless fidelity</strong> est quant elle plus tendancieuse, en effet de nombreuses cartes ne sont pas directement reconnues après l'installation de votre distribution et cela en raison de la non implémentation des drivers appropriés. Il faut savoir que des paquets sont néanmoins disponibles pour remédier à ces problèmes récurrents :</p>
+<ul class="simple">
+<li><strong>firmware-realtek</strong> permettant la prise en charge des équipements Realteck</li>
+<li><strong>firmware-ralink</strong> permettant la prise en charge des équipements Ralink</li>
+<li><strong>firmware-iwlwifi</strong> permettant la prise en charge des équipements Intel</li>
+<li><strong>firmware-atheros</strong> permettant la prise en charge des équipements Atheros.</li>
+</ul>
+<p>Mais malgré ces pilotes disponibles sous GNU/Linux, parfois les cartes peuvent se montrer récalcitrantes et ne voudront toujours pas fonctionner. Sachez à titre d'information qu'un outil <strong>ndiswrapper</strong> permettra d'utiliser les pilotes Windows pour les implémenter dans votre distribution GNU/Linux.</p>
+<div class="section" id="les-commandes-pour-interferer-sur-le-materiel-reseau">
+<h3>Les commandes pour interférer sur le matériel réseau</h3>
+<p>La première commande à connaître sous GNU/Linux pour vérifier que votre matériel réseau est bel et bien fonctionnel est la commande <strong>ifconfig</strong>, diminutif de l'anglais <em>interface configuration</em>. Il faut savoir que cette commande aujourd'hui est dépréciée au profit de la commande <strong>ip</strong> mais reste encore très largement répandue et utilisée. Cette commande va permettre de contrôler l'état de votre interface réseau, autrement dit savoir si votre carte ethernet, wifi sont actives, démarrées, si elles bénéficient d'un adressage IP opérationnel ... Voici les principales combinaisons</p>
+<pre class="code bash literal-block">
+<span class="c1"># voir l'ensemble des cartes actives et fonctionnelles
+</span>$ ifconfig
+
+<span class="c1"># voir toutes les cartes présentes (actives et non actives)
+</span>$ ifconfig --all
+
+<span class="c1"># Désactiver l'interface ethernet n°1
+</span>$ ifconfig eth1 down
+
+<span class="c1"># activer l'interface ethernet n°1
+</span>$ ifconfig eth1 up
+
+<span class="c1"># attribuer dynamiquement un adressage IP à l'interface ethernet n°1
+</span>$ ifconfig eth1 192.168.1.1 netmask 255.255.255.0
+
+<span class="c1"># ajouter une adresse virtuelle à l'interface ethernet n°1
+</span>$ ifconfig eth1:0 10.1.1.1 netmask 255.255.0.0
+</pre>
+<p>Pour ceux qui viennent à se demander à quoi sert d'ajouter une adresse virtuelle à une interface, je les invite à lire mon prochain cours traitant justement de l'<strong>IP aliasing</strong>. Pour expliquer très rapidement, cela consiste à attribuer une deuxième adresse IP à notre interface, autrement si vous amusez à faire un ping sur votre adressage principal (192.168.1.1 ici) et un autre sur votre alias virtuel (10.1.1.1) voici les résultats :</p>
+<pre class="code bash literal-block">
+$ ping 192.168.1.1
+PING 192.168.1.1 <span class="o">(</span>192.168.1.1<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from 192.168.1.1: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.073 ms
+<span class="m">64</span> bytes from 192.168.1.1: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.078 ms
+--- 192.168.1.1 ping statistics ---
+<span class="m">4</span> packets transmitted, <span class="m">4</span> received, 0% packet loss, <span class="nb">time</span> 2999ms
+rtt min/avg/max/mdev <span class="o">=</span> 0.073/0.075/0.078/0.009 msu
+
+$ ping 10.1.1.1
+PING 10.1.1.1 <span class="o">(</span>10.1.1.1<span class="o">)</span> 56<span class="o">(</span>84<span class="o">)</span> bytes of data.
+<span class="m">64</span> bytes from 10.1.1.1: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.073 ms
+<span class="m">64</span> bytes from 10.1.1.1: <span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span> <span class="nv">ttl</span><span class="o">=</span><span class="m">64</span> <span class="nv">time</span><span class="o">=</span>0.078 ms
+--- 10.1.1.1  ping statistics ---
+<span class="m">4</span> packets transmitted, <span class="m">4</span> received, 0% packet loss, <span class="nb">time</span> 2999ms
+rtt min/avg/max/mdev <span class="o">=</span> 0.073/0.075/0.078/0.009 msu
+</pre>
+<p>Les deux résultats s'avèrent être concluant, votre interface répond désormais à deux adresses IP différentes. Intéressons nous dès à présent à la notion de routes, étape fondamentale dans le monde des réseaux. Ce nom route est à assimiler aux routes ferroviaires, routières que nous connaissons très bien. Il s'agit de créer un itinéraire pour permettre l'acheminer de vos paquets TCP/IP, à travers le réseau pour garantir l'échange entre par exemple une machine cliente et un serveur web. Les commandes les plus efficientes pour la gestion des routes sont les suivantes :</p>
+<pre class="code bash literal-block">
+<span class="c1"># ajouter une route pour le réseau 172.15.0.0/16 ayant comme passerelle par défaut 192.168.1.254
+</span>$ route add -net 172.15.0.0 netmask 255.255.0.0 gw 192.168.1.254
+
+<span class="c1"># supprimer une route emmenant au réseau 172.15.0.0/16
+</span>$ route del -net 172.15.0.0 netmask 255.255.0.0
+
+<span class="c1"># supprimer la route par défaut
+</span>$ route del default
+
+<span class="c1"># ajouter la route par défaut
+</span>$ route add default gw 192.168.1.254
+</pre>
+</div>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/gnulinux-networking.html">jeu. 10 septembre 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/revisions.html" title="View all posts in Révisions" rel="category tag">Révisions</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/gnulinux-networking.html" title="Permalink to GNU/Linux Networking" rel="bookmark">GNU/Linux Networking</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="preambule">
+<h2>Préambule</h2>
+<p>Avant d'aborder concrètement l'administration du <strong>réseau</strong> sous un système de type <strong>GNU/Linux</strong>, il convient de faire quelques rappels dans les différentes terminologies couramment utilisées en informatique. Tout d'abord il faut savoir que le terme <strong>réseau</strong> admet un certain pluralisme de sens en informatique, en effet ce terme générique est en quelque sorte un abus de langage dans le sens où il existe différentes catégories de <strong>réseaux</strong> qui se distinguent par leur <em>champ d'action</em>, c'est à dire leur étendue géographique, les technologies qu'ils impliquent (protocoles, nous reviendrons plus tard sur ce terme) et bien d'autres paramètres. Pour commencer, voici quelques termes que vous devriez assimiler avant la poursuite de votre lecture :</p>
+<ul class="simple">
+<li>le <strong>réseau local</strong> : on utilise couramment l'acronyme anglais <strong>LAN</strong> pour décrire ce réseau, qui signifie Local Area Network (zone réseau dédiée à une échelle locale). Typiquement, les LANs correspondent à l'ensemble des ordinateurs que vous utilisez au sein de votre entreprise/collège/lycée/domicile. Ils sont reliés entre eux et peuvent communiquer par l'intermédiaire d'un adressage IP spécifique. Cet adressage à la particularité d'être valable uniquement au sein de votre infrastructure interne et ne pourra être utilisé sur le réseau Internet. On qualifiera alors de réseau privé ce type de réseau car il est n'est pas routable (transportable) sur le réseau internet. Pour que vos machines appartenant à un LAN puissent disposer d'une communication effective avec le réseau internet, il faudra passer par différents équipements qui feront une opération de translation d'adressage : votre adressage IP assigné à votre réseau local sera converti en un adressage public, en capacité d'établir une communication avec les ordinateurs de l'Internet. Ce procédé sera rendu possible par ce que l'on appelle des routeurs (par exemple votre Box internet).</li>
+</ul>
+<p>Tout système <strong>GNU/Linux</strong> interagit avec ce que l'on appelle des <em>niveaux d'exécution</em>. Par ailleurs, le système est toujours enfermé dans un <em>niveau d'exécution</em> et cela en abstraction de son activité propre (<em>serveur</em>, <em>desktop</em> ...). Pour donner une définition claire et simple, un <em>niveau d'exécution</em> est une sorte d'interface fonctionnelle qui définit scrupuleusement la liste des services qui doivent être en fonctionnement ou bien arrêtés. Ainsi, dès lors que le système change
+de <em>niveau</em> il va vérifier quels sont les services à démarrer et au contraire quels sont ceux à arrêter.</p>
+</div>
+<div class="section" id="presentation-des-niveaux">
+<h2>Présentation des niveaux</h2>
+<ul class="simple">
+<li><strong>Niveau 0</strong> : c'est le premier niveau, le système est inopérant, physiquement arrêté. Aussi surprenant que cela puisse paraître, ce <em>niveau 0</em> demande une configuration comme tout autre niveau qui se respecte : en effet, dès lors que le système va entrer en <em>niveau 0</em>, il faut que la gestion des services soit décrite (les services à arrêter).</li>
+<li><strong>Niveau 1</strong> ou <strong>Single Level</strong> : ce niveau <strong>1</strong> ce distingue des autres car il a la particularité de correspondre à un état de maintenance. Dès lors, seule le <em>root</em> peut se connecter à la machine, la majorité des services sont inopérant car arrêtés, seule l'activité la plus basique est exploitable. Les opérations de maintenance peuvent se dérouler tranquillement.</li>
+<li><strong>Niveau 2</strong> : ce niveau n'est que rarement utilisé, dédié à l'administrateur qui peut lui conférer un mode de fonctionnement particulier (libre est à lui de choisir les services démarrés et ceux arrêtés). Notons que sur les distributions héritées de <strong>Debian</strong>, ce niveau est fonctionnel par défaut.</li>
+<li><strong>Niveau 3</strong> : ce niveau démarre tous les services à l'exception de l'interface graphique. Sur la majorité des systèmes, ce service est fonctionnel par défaut.</li>
+<li><strong>Niveau 4</strong> : à l'instar du niveau 2, ce niveau est réservé à l'administrateur qui peut lui attribuer un fonctionnement particulier.</li>
+<li><strong>Niveau 5</strong> : tous les services sont démarrés ainsi que l'interface graphique. Sur les distributions dérivées de <strong>Debian</strong>, ce niveau n'est pas utilisé.</li>
+<li><strong>Niveau 6</strong> : état éphémère correspondant à un état de redémarrage <em>reboot</em>. La configuration du <strong>niveau 6</strong> consistera à définir les services à arrêter lors du redémarrage. Ensuite, dès lors que le redémarrge sera terminé, le système entrera dans un autre <strong>niveau d'exécution</strong> (en général celui correspondant au niveau par <em>défaut</em>).</li>
+</ul>
+</div>
+<div class="section" id="le-grand-architecte">
+<h2>Le grand architecte</h2>
+<p>En effet, il est légitime de se demander qui dispose du choix de changer le niveau d'exécution lorsque l'on a installé son système. La réponse n'est autre que la distribution elle-même. Néanmoins,  <strong>l'administrateur</strong> est libre de préférer une gestion personnelle en modifiant la configuration de ces-dits niveaux et en choisissant le niveau fonctionnel (autrement dit dans quel état de la machine ces niveaux sont opérants) propre à chacun des niveaux. Pour rappel, chaque niveau
+d'exécution va interférer dès lors avec les services du système, soit en les arrêtant soit en les démarrant.</p>
+</div>
+<div class="section" id="je-suis-ton-pere">
+<h2>Je suis ton père</h2>
+<p>je vous propose de faire une petite commande en introduction :</p>
+<pre class="code bash literal-block">
+$ ps -ef <span class="p">|</span> head
+UID   PID   PPID   C   CTIME   TTY       TIME     CMD
+root    <span class="m">1</span>      <span class="m">0</span>   <span class="m">0</span>   10:08     ?   00:00:14  init<span class="o">[</span>5<span class="o">]</span>
+</pre>
+<p>Cette commande listant les processus est particulièrement intéressante : en première position nous pouvons voir qu'un certain processus nommé <strong>init</strong> est lancé avec un PPID (<em>Parent Process Identification</em>) égal à <strong>0</strong>. Autrement dit, <strong>init</strong> est le processus père de tous les autres processus. En effet, ce sera le premier à être lancé lors du chargement de votre noyau <em>kernel</em>. Toute sa configuration est disponible dans le fichier <strong>/etc/inittab</strong> vous pourrez admirer en tout heure la beauté
+de son fonctionnement.</p>
+</div>
+<div class="section" id="le-fichier-etc-inittab">
+<h2>Le fichier <strong>/etc/inittab</strong></h2>
+<p>Il faut savoir en préambule que le contenu du fichier <strong>/etc/inittab</strong> diffère d'une distribution à une autre. Malgré cela, ce fichier adopte toujours des similarités communes : <strong>identifiant</strong>:<strong>niveau</strong>:<strong>mode_action</strong>:<strong>commande</strong></p>
+<div class="section" id="explorons-etc-inittab">
+<h3>Explorons <em>/etc/inittab</em></h3>
+<ul class="simple">
+<li><em>identifiant</em> : chaîne alphanumérique composée d'un ou deux caractères, permettant d'identifier précisemment la ligne. Restriction : une ligne à un identifiant propre</li>
+<li><em>niveau</em> : définit le niveau d'exécution (en chiffres)</li>
+<li><em>mode_action</em> : correspond à des modes modèles permettant de définir l'exécution de la commande</li>
+<li><em>commande</em> : la commande à exécuter en fonction d'un niveau ou des niveaux paramétré(s) en fonction du mode d'action</li>
+</ul>
+</div>
+<div class="section" id="les-modes-d-actions-habituels">
+<h3>Les modes d'actions habituels</h3>
+<ul class="simple">
+<li><em>initdefault</em> : dans ce mode le champ <em>commande</em> est inexistant (vide). Sa fonction ne sert qu'à définir le niveau d'exécution du système par défaut</li>
+<li><em>sysinit</em> : permet d'exécuter des scripts lors de la phase d'initialisation du système et cela en totale abstraction du niveau d'exécution. Ainsi le deuxième champ est inexistant (vide)</li>
+<li><em>wait</em> : exécute la commande ou le script précisé en attendant la fin de l'exécution de ce-dernier ou de cette-dernière pour passer aux autres lignes du fichier inittab</li>
+<li><em>respawn</em> : permet d'exécuter la commande en veillant à ce que son processus figure en background. Interprète les lignes suivantes du fichier inittab ; si le processus de la commande vient à s'arrêter alors init le rappelera de manière systématique.</li>
+</ul>
+</div>
+<div class="section" id="exemple-d-un-fichier-inittab-d-une-distribution-redhat">
+<h3>Exemple d'un fichier <strong>inittab</strong> d'une distribution RedHat</h3>
+<pre class="code bash literal-block">
+id:5:initdefault:
+si::sysinit:/etc/rc.d/rc.sysinit
+10:0:wait:/etc/rc.d/rc 0
+11:1:wait:/etc/rc.d/rc 1
+12:2:wait:/etc/rc.d/rc 2
+13:3:wait:/etc/rc.d/rc 3
+14:4:wait:/etc/rc.d/rc 4
+15:5:wait:/etc/rc.d/rc 5
+16:6:wait:/etc/rc.d/rc 6
+x:5:respawn:/etc/X11/prefdm -nodaemon
+</pre>
+</div>
+</div>
+<div class="section" id="les-services-du-systeme">
+<h2>Les services du système</h2>
+<p>Tout système GNU/Linux exécute les différents services par l'intermédiaire de scripts normalisés, situés dans le répertoire <strong>/etc/init.d/</strong> (physiquement ou en tant que lien symbolique) et comportent deux états, paramètres obligatoires : <strong>start</strong> pour lancer le service et <strong>stop</strong> pour l'arrêt du service.</p>
+<pre class="code bash literal-block">
+/etc/init.d/nom_du_service start
+/etc/init.d/nom_du_service stop
+</pre>
+<p>ou bien</p>
+<pre class="code bash literal-block">
+service nom_du_service start
+service nom_du_service stop
+</pre>
+<p>D'autres paramètres sont souvent utilisés comme <em>restart</em> pour redémarrer le service ou encore <em>status</em> indiquant l'état du service. Il faut savoir maintenant que l'utilisation de la commande <em>service</em> est couramment préférée puisqu'en effet le service sera lancé en s'affranchissant au maximum de l'environnement (pwd, variables ...). Le service sera dès lors démarré au sein d'un environnement plus sain, neutre et moins exposé aux différentes anomalies éventuelles découlant de
+l'environnement.</p>
+<div class="section" id="format-d-un-script-de-service">
+<h3>Format d'un script de service</h3>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="k">case</span> <span class="nv">$1</span> in
+start<span class="o">)</span>
+    <span class="c1"># commande permettant de lancer le service
+</span><span class="p">;;</span>
+stop<span class="o">)</span>
+    <span class="c1"># commande permettant d'arrêter le service
+</span><span class="p">;;</span>
+<span class="k">esac</span>
+</pre>
+<p>79</p>
+</div>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/github-et-pelican.html">mar. 10 mars 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/pelican.html" title="View all posts in Pelican" rel="category tag">Pelican</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/github-et-pelican.html" title="Permalink to Github et Pelican" rel="bookmark">Github et Pelican</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="publier-son-site-pelican">
+<h2>Publier son site Pelican</h2>
+<p>Nous allons voir les différentes étapes pour publier notre site internet généré par <strong>Pelican</strong> sur la plateforme github. Ainsi, nous disposerons d'un site qui bénéficie d'un <em>certificat SSL reconnu</em> (pas d'alerte dans le navigateur de l'internaute donc), mais aussi des sources de notre site internet.</p>
+<div class="section" id="partons-de-rien">
+<h3>Partons de rien</h3>
+<p>Nous allons partir de rien (pas de site Pelican déjà présent) pour illustrer cette simplicité enfantine qu'est de publier pelican sur github. Pour cela première chose à faire, se créer un compte sur github : <a class="reference external" href="https://github.com/join">https://github.com/join</a></p>
+<img alt="" src="images/github_signup.png" style="width: 836px; height: 500px;" />
+<p>Saisir l'ensemble des informations requises. Une fois cela effectué, votre espace github s'ouvre à vous (pensez à valider votre email). Cliquez à droite en haut de l'écran sur <strong>New repository</strong></p>
+<img alt="" src="images/github_new_repo.png" style="width: 836px; height: 500px;" />
+<p>Respectez cette syntaxe pour le nom de votre repo : <strong>votre-nom-utilisateur.github.io</strong></p>
+<img alt="" src="images/creation_repo.png" style="width: 836px; height: 500px;" />
+<p>Si tout ce passe pour le mieux dans le meilleur des mondes, alors github va vous le faire savoir par le message suivant, vous invitant à faire votre premier <em>commit</em> :</p>
+<img alt="" src="images/repo_ok.png" style="width: 836px; height: 500px;" />
+<p>Voilà tout est configuré sur github, maintenant il nous reste à paramétrer git. Mais avant, comme dit précédemment je pars de rien, donc il me faut créer un blog par le divin Pelican. Ainsi, j'entre en mode <a class="reference external" href="https://static.squarespace.com/static/51b3dc8ee4b051b96ceb10de/51ce6099e4b0d911b4489b79/51ce61b8e4b0d911b449e6fe/1313793167043/1000w/ramboV3.jpeg">rambo</a> énervé et je rentre frénétiquement dans le terminal les commandes suivantes :</p>
+<pre class="code bash literal-block">
+$ mkdir blog <span class="o">&amp;&amp;</span> <span class="nb">cd</span> blog <span class="o">&amp;&amp;</span> pelican-quickstart
+</pre>
+<p>L'interrogatoire commence, je remplis les questions comme il me convient puis une fois cela réalisé je me déplace dans le dossier content en vue de créer mon premier article.</p>
+</div>
+<div class="section" id="git">
+<h3>Git</h3>
+<p>Première chose, vérifier que git est installé en ouvrant le terminal ([CTRL]+[ALT]+[T] pour les personnes sous Ubuntu et dérivés)</p>
+<pre class="code bash literal-block">
+$ whereis git
+git: /usr/bin/git /usr/bin/X11/git /usr/share/man/man1/git.1.gz
+</pre>
+<p>Si cette dernière ligne s'affiche <em>git: /usr/bin/git /usr/bin/X11/git /usr/share/man/man1/git.1.gz</em> alors tout est bon git est installé, sinon saisir toujours dans le terminal :</p>
+<pre class="code bash literal-block">
+$ sudo apt-get install git -y
+</pre>
+<p>Maintenant que cette vérification est faites, nous allons configurer <em>git</em>.</p>
+<pre class="code bash literal-block">
+$ git config --global user.name <span class="s2">&quot;saisir-votre-nom&quot;</span>
+$ git config --global user.email <span class="s2">&quot;saisir-votre-mot-de-passe&quot;</span>
+$ git config --global http.postBuffer 52428800
+$ git config --global color.ui <span class="nb">true</span>
+$ git remote add origin https://github.com/votre-nom-utilisateur/nom-de-votre-repository.git
+</pre>
+<p>Maintenant nous allons créer un fichier <em>.gitignore</em> permettant de ne pas uploader les fichiers que nous allons spécifier :</p>
+<pre class="code bash literal-block">
+<span class="nb">echo</span> <span class="s2">&quot;output
+*.pyc
+*.pid
+Makefile
+develop_server.sh
+*.sh
+*.py
+.gitignore
+.*&quot;</span>&gt;.gitignore
+</pre>
+<p>Ceci fait, il nous faut créer notre premier commit vide, puis renommer notre <em>master</em> en <em>source</em> (on transfère notre master dans une branche source plus exactement):</p>
+<pre class="code bash literal-block">
+$ git commit --allow-empty -m <span class="s2">&quot;le message de votre choix&quot;</span>
+$ git branch -m master <span class="nb">source</span>
+$ git add .
+$ git commit -m <span class="s1">'le message de votre choix'</span>
+$ git push origin <span class="nb">source</span>
+</pre>
+<p>Les sources sont désormais présentes dans votre repository, il nous reste plus qu'à mettre en place notre site sur github :</p>
+<pre class="code bash literal-block">
+$ make html
+$ ghp-import output
+$ git push origin gh-pages:master
+</pre>
+<p>Si vous avez rencontré un problème vous avez la possibilité de visionner en vidéo selon la vitesse de votre choix toutes les opérations que nous avons effectuées ci-dessus : <a class="reference external" href="http://antre-du-tux.info/demos/git.html">voir</a></p>
+</div>
+<div class="section" id="scripts-pour-les-feignasses">
+<h3>Scripts pour les feignasses</h3>
+<p>Voici le script pour publier votre site internet généré par Pelican sur votre github. Le paramétrage a été fait pour une connexion HTTPS et non SSH, mais libre à vous de le changer en décommentant la ligne   # SSH connection --&gt; git remote add origin git&#64;github.com:&quot;$user&quot;/&quot;$repo&quot; et en commentant par un <em>#</em> la ligne         git remote add origin https://github.com/&quot;$user&quot;/&quot;$repo&quot;.</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1">#----------------------------------------------------------------
+# Dependencies - GH-IMPORT
+#----------------------------------------------------------------
+</span><span class="k">if</span> <span class="o">[</span> -z <span class="k">$(</span>whereis dh-import<span class="k">)</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">echo</span> -e <span class="s2">&quot;\e[1;31mdh-import not installed, please run 'sudo pip install gh-import'\e[0;m&quot;</span><span class="p">;</span>
+        <span class="nb">exit</span> 1<span class="p">;</span>
+<span class="k">fi</span><span class="p">;</span>
+
+<span class="c1">#----------------------------------------------------------------
+# Git Intialize &amp;&amp; set up the config (repository, name, email)
+#----------------------------------------------------------------
+</span>clear <span class="o">&amp;&amp;</span> <span class="nb">read</span> -p <span class="s2">&quot;Who is the user ? &quot;</span> user
+<span class="nb">read</span> -p <span class="s2">&quot;What's your name ? &quot;</span> name
+<span class="nb">read</span> -p <span class="s2">&quot;What's your email ? &quot;</span> email
+<span class="nb">read</span> -p <span class="s2">&quot;Repository's name ? (don't forget .git)&quot;</span> repo
+
+<span class="c1">#----------------------------------------------------------------
+# Git Intialize &amp;&amp; set up the config (repository, name, email)
+#----------------------------------------------------------------
+</span>git init
+git remote add origin https://github.com/<span class="s2">&quot;</span><span class="nv">$user</span><span class="s2">&quot;</span>/<span class="s2">&quot;</span><span class="nv">$repo</span><span class="s2">&quot;</span>
+<span class="c1"># SSH connection --&gt; git remote add origin git&#64;github.com:&quot;$user&quot;/&quot;$repo&quot;
+</span>git remote add origin https://github.com/<span class="s2">&quot;</span><span class="nv">$user</span><span class="s2">&quot;</span>/<span class="s2">&quot;</span><span class="nv">$repo</span><span class="s2">&quot;</span>
+git config --global user.name <span class="s2">&quot;</span><span class="nv">$name</span><span class="s2">&quot;</span>
+git config --global user.email <span class="s2">&quot;</span><span class="nv">$email</span><span class="s2">&quot;</span>
+git config --global http.postBuffer 52428800
+
+<span class="nb">echo</span> <span class="s2">&quot;output
+*.pyc
+*.pid
+Makefile
+develop_server.sh
+*.sh
+*.py
+.gitignore
+.*
+&quot;</span>&gt; .gitignore
+
+<span class="c1">#----------------------------------------------------------------
+# Commit website's sources
+#----------------------------------------------------------------
+</span>git commit --allow-empty -m <span class="s2">&quot;initial commit&quot;</span>
+git branch -m master <span class="nb">source</span>
+git add .
+git commit -m <span class="s1">'Création du source'</span>
+git push origin <span class="nb">source</span>
+
+<span class="c1">#----------------------------------------------------------------
+# Initialize your web site
+#----------------------------------------------------------------
+</span>make html
+ghp-import output
+git push origin gh-pages:master
+</pre>
+<p>Le script suivant a pour objectif de <strong>mettre à jour</strong> votre <em>site</em> ainsi que ses <em>sources</em>, dès que vous rajoutez de nouveaux articles, pages ...</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1">#----------------------------------------------------------------
+# Sources updates
+#----------------------------------------------------------------
+</span><span class="nb">echo</span> -e <span class="s2">&quot;\e[1;34mUpdating sources ... \e[0;m&quot;</span>
+git add .
+git commit -m <span class="s1">'up'</span>
+git push origin <span class="nb">source</span>
+
+<span class="c1">#----------------------------------------------------------------
+# Site updates
+#----------------------------------------------------------------
+</span><span class="nb">echo</span> -e <span class="s2">&quot;\e[1;34mUpdating site ... \e[0;m&quot;</span>
+make html
+ghp-import output
+git push origin gh-pages:master
+</pre>
+<p>Vous pouvez maintenant enregistrer le script de mise à jour dans un dossier, créer un <em>alias</em> dans votre bashrc qui pointe sur ce script, ou bien créer une fonction directement dans votre bashrc contenant ce code.</p>
+</div>
+</div>
+
+		</div> <!--/#entry-content-->
+    		<span class="tag-links"><strong>Tagged</strong>
+ <a href="https://tom-admin.github.io/tag/git.html" rel="tag">git</a>,  <a href="https://tom-admin.github.io/tag/github.html" rel="tag">github</a>,  <a href="https://tom-admin.github.io/tag/pelican.html" rel="tag">pelican</a>    		</span>
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/installation-pip.html">ven. 27 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/python.html" title="View all posts in Python" rel="category tag">Python</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/installation-pip.html" title="Permalink to Installation PIP" rel="bookmark">Installation PIP</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="pourquoi-installer-pip">
+<h2>Pourquoi installer PIP</h2>
+<p><strong>PIP</strong> permet d'installer facilement et sans encombre tous les <em>packages</em> disponibles pour agrémenter la saveur de <strong>Python</strong>. Il est donc vivement conseillé de procéder à son installation. Ensemble nous allons voir les différentes étapes pour pouvoir bénéficier de cet outil de package sous les distributions Ubuntu ainsi que ses distributions dérivées.</p>
+<div class="section" id="les-etapes-de-l-installation">
+<h3>Les étapes de l'installation</h3>
+<p>Ouvrez votre terminal <em>préféré</em> ou bien celui par défaut ([CTRL]+[ALT]+[T]) et saisissez les informations suivantes :</p>
+<pre class="code bash literal-block">
+$ sudo apt-get install python-pip python-dev build-essential
+$ sudo pip install --upgrade pip
+</pre>
+<p>Voilà <strong>PIP</strong> est installé, à cela nous pouvons ajouter l'installation des environnements virtuels avec <em>virtualenv</em> :</p>
+<pre class="code bash literal-block">
+$ sudo pip install --upgrade virtualenv
+</pre>
+</div>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/i-love-linux-2.html">jeu. 26 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/linux.html" title="View all posts in Linux" rel="category tag">Linux</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/i-love-linux-2.html" title="Permalink to I Love Linux #2" rel="bookmark">I Love Linux #2</a>
+		</h2>
+		<div class="entry-content">
+			<p>Tout système <strong>GNU/Linux</strong> interagit avec ce que l'on appelle des <em>niveaux d'exécution</em>. Par ailleurs, le système est toujours enfermé dans un <em>niveau d'exécution</em> et cela en abstraction de son activité propre (<em>serveur</em>, <em>desktop</em> ...). Pour donner une définition claire et simple, un <em>niveau d'exécution</em> est une sorte d'interface fonctionnelle qui définit scrupuleusement la liste des services qui doivent être en fonctionnement ou bien arrêtés. Ainsi, dès lors que le système change
+de <em>niveau</em> il va vérifier quels sont les services à démarrer et au contraire quels sont ceux à arrêter.</p>
+<div class="section" id="presentation-des-niveaux">
+<h2>Présentation des niveaux</h2>
+<ul class="simple">
+<li><strong>Niveau 0</strong> : c'est le premier niveau, le système est inopérant, physiquement arrêté. Aussi surprenant que cela puisse paraître, ce <em>niveau 0</em> demande une configuration comme tout autre niveau qui se respecte : en effet, dès lors que le système va entrer en <em>niveau 0</em>, il faut que la gestion des services soit décrite (les services à arrêter).</li>
+<li><strong>Niveau 1</strong> ou <strong>Single Level</strong> : ce niveau <strong>1</strong> ce distingue des autres car il a la particularité de correspondre à un état de maintenance. Dès lors, seule le <em>root</em> peut se connecter à la machine, la majorité des services sont inopérant car arrêtés, seule l'activité la plus basique est exploitable. Les opérations de maintenance peuvent se dérouler tranquillement.</li>
+<li><strong>Niveau 2</strong> : ce niveau n'est que rarement utilisé, dédié à l'administrateur qui peut lui conférer un mode de fonctionnement particulier (libre est à lui de choisir les services démarrés et ceux arrêtés). Notons que sur les distributions héritées de <strong>Debian</strong>, ce niveau est fonctionnel par défaut.</li>
+<li><strong>Niveau 3</strong> : ce niveau démarre tous les services à l'exception de l'interface graphique. Sur la majorité des systèmes, ce service est fonctionnel par défaut.</li>
+<li><strong>Niveau 4</strong> : à l'instar du niveau 2, ce niveau est réservé à l'administrateur qui peut lui attribuer un fonctionnement particulier.</li>
+<li><strong>Niveau 5</strong> : tous les services sont démarrés ainsi que l'interface graphique. Sur les distributions dérivées de <strong>Debian</strong>, ce niveau n'est pas utilisé.</li>
+<li><strong>Niveau 6</strong> : état éphémère correspondant à un état de redémarrage <em>reboot</em>. La configuration du <strong>niveau 6</strong> consistera à définir les services à arrêter lors du redémarrage. Ensuite, dès lors que le redémarrge sera terminé, le système entrera dans un autre <strong>niveau d'exécution</strong> (en général celui correspondant au niveau par <em>défaut</em>).</li>
+</ul>
+</div>
+<div class="section" id="le-grand-architecte">
+<h2>Le grand architecte</h2>
+<p>En effet, il est légitime de se demander qui dispose du choix de changer le niveau d'exécution lorsque l'on a installé son système. La réponse n'est autre que la distribution elle-même. Néanmoins,  <strong>l'administrateur</strong> est libre de préférer une gestion personnelle en modifiant la configuration de ces-dits niveaux et en choisissant le niveau fonctionnel (autrement dit dans quel état de la machine ces niveaux sont opérants) propre à chacun des niveaux. Pour rappel, chaque niveau
+d'exécution va interférer dès lors avec les services du système, soit en les arrêtant soit en les démarrant.</p>
+</div>
+<div class="section" id="je-suis-ton-pere">
+<h2>Je suis ton père</h2>
+<p>je vous propose de faire une petite commande en introduction :</p>
+<pre class="code bash literal-block">
+$ ps -ef <span class="p">|</span> head
+UID   PID   PPID   C   CTIME   TTY       TIME     CMD
+root    <span class="m">1</span>      <span class="m">0</span>   <span class="m">0</span>   10:08     ?   00:00:14  init<span class="o">[</span>5<span class="o">]</span>
+</pre>
+<p>Cette commande listant les processus est particulièrement intéressante : en première position nous pouvons voir qu'un certain processus nommé <strong>init</strong> est lancé avec un PPID (<em>Parent Process Identification</em>) égal à <strong>0</strong>. Autrement dit, <strong>init</strong> est le processus père de tous les autres processus. En effet, ce sera le premier à être lancé lors du chargement de votre noyau <em>kernel</em>. Toute sa configuration est disponible dans le fichier <strong>/etc/inittab</strong> vous pourrez admirer en tout heure la beauté
+de son fonctionnement.</p>
+</div>
+<div class="section" id="le-fichier-etc-inittab">
+<h2>Le fichier <strong>/etc/inittab</strong></h2>
+<p>Il faut savoir en préambule que le contenu du fichier <strong>/etc/inittab</strong> diffère d'une distribution à une autre. Malgré cela, ce fichier adopte toujours des similarités communes : <strong>identifiant</strong>:<strong>niveau</strong>:<strong>mode_action</strong>:<strong>commande</strong></p>
+<div class="section" id="explorons-etc-inittab">
+<h3>Explorons <em>/etc/inittab</em></h3>
+<ul class="simple">
+<li><em>identifiant</em> : chaîne alphanumérique composée d'un ou deux caractères, permettant d'identifier précisemment la ligne. Restriction : une ligne à un identifiant propre</li>
+<li><em>niveau</em> : définit le niveau d'exécution (en chiffres)</li>
+<li><em>mode_action</em> : correspond à des modes modèles permettant de définir l'exécution de la commande</li>
+<li><em>commande</em> : la commande à exécuter en fonction d'un niveau ou des niveaux paramétré(s) en fonction du mode d'action</li>
+</ul>
+</div>
+<div class="section" id="les-modes-d-actions-habituels">
+<h3>Les modes d'actions habituels</h3>
+<ul class="simple">
+<li><em>initdefault</em> : dans ce mode le champ <em>commande</em> est inexistant (vide). Sa fonction ne sert qu'à définir le niveau d'exécution du système par défaut</li>
+<li><em>sysinit</em> : permet d'exécuter des scripts lors de la phase d'initialisation du système et cela en totale abstraction du niveau d'exécution. Ainsi le deuxième champ est inexistant (vide)</li>
+<li><em>wait</em> : exécute la commande ou le script précisé en attendant la fin de l'exécution de ce-dernier ou de cette-dernière pour passer aux autres lignes du fichier inittab</li>
+<li><em>respawn</em> : permet d'exécuter la commande en veillant à ce que son processus figure en background. Interprète les lignes suivantes du fichier inittab ; si le processus de la commande vient à s'arrêter alors init le rappelera de manière systématique.</li>
+</ul>
+</div>
+<div class="section" id="exemple-d-un-fichier-inittab-d-une-distribution-redhat">
+<h3>Exemple d'un fichier <strong>inittab</strong> d'une distribution RedHat</h3>
+<pre class="code bash literal-block">
+id:5:initdefault:
+si::sysinit:/etc/rc.d/rc.sysinit
+10:0:wait:/etc/rc.d/rc 0
+11:1:wait:/etc/rc.d/rc 1
+12:2:wait:/etc/rc.d/rc 2
+13:3:wait:/etc/rc.d/rc 3
+14:4:wait:/etc/rc.d/rc 4
+15:5:wait:/etc/rc.d/rc 5
+16:6:wait:/etc/rc.d/rc 6
+x:5:respawn:/etc/X11/prefdm -nodaemon
+</pre>
+</div>
+</div>
+<div class="section" id="les-services-du-systeme">
+<h2>Les services du système</h2>
+<p>Tout système GNU/Linux exécute les différents services par l'intermédiaire de scripts normalisés, situés dans le répertoire <strong>/etc/init.d/</strong> (physiquement ou en tant que lien symbolique) et comportent deux états, paramètres obligatoires : <strong>start</strong> pour lancer le service et <strong>stop</strong> pour l'arrêt du service.</p>
+<pre class="code bash literal-block">
+/etc/init.d/nom_du_service start
+/etc/init.d/nom_du_service stop
+</pre>
+<p>ou bien</p>
+<pre class="code bash literal-block">
+service nom_du_service start
+service nom_du_service stop
+</pre>
+<p>D'autres paramètres sont souvent utilisés comme <em>restart</em> pour redémarrer le service ou encore <em>status</em> indiquant l'état du service. Il faut savoir maintenant que l'utilisation de la commande <em>service</em> est couramment préférée puisqu'en effet le service sera lancé en s'affranchissant au maximum de l'environnement (pwd, variables ...). Le service sera dès lors démarré au sein d'un environnement plus sain, neutre et moins exposé aux différentes anomalies éventuelles découlant de
+l'environnement.</p>
+<div class="section" id="format-d-un-script-de-service">
+<h3>Format d'un script de service</h3>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="k">case</span> <span class="nv">$1</span> in
+start<span class="o">)</span>
+    <span class="c1"># commande permettant de lancer le service
+</span><span class="p">;;</span>
+stop<span class="o">)</span>
+    <span class="c1"># commande permettant d'arrêter le service
+</span><span class="p">;;</span>
+<span class="k">esac</span>
+</pre>
+<p>79</p>
+</div>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/scripts-utiles.html">mer. 25 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/scripting.html" title="View all posts in Scripting" rel="category tag">Scripting</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/scripts-utiles.html" title="Permalink to Scripts utiles" rel="bookmark">Scripts utiles</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="verification-root">
+<h2>Vérification root</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Be root or not to be
+</span>
+<span class="c1"># Toutes les lignes contenant un $(commande) font appel à un sous-shell.
+# Une autre solution consiste à utiliser les back-quotes `ma commande` qui ne feront toutefois pas appel à un sous-shell (rapidité moindre)
+# exemple : $(whoami) est &quot;équivalent&quot; dans le résultat à l'utilisation de `whoami`
+</span>
+<span class="c1"># variables couleurs
+</span><span class="nv">RC</span><span class="o">=</span><span class="s1">'\e[1;31m'</span>
+<span class="nv">NC</span><span class="o">=</span><span class="s1">'\e[0;m'</span>
+
+<span class="c1"># vérification avec USER ID
+</span><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$UID</span><span class="k">)</span> -ne <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$RC</span><span class="s2"> Must be root to perform this action !</span><span class="nv">$NC</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="nb">exit</span> 1<span class="p">;</span>
+<span class="k">fi</span>
+
+<span class="c1"># vérification avec LOGNAME
+</span><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$LOGNAME</span><span class="k">)</span> !<span class="o">=</span> <span class="s1">'root'</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$RC</span><span class="s2"> Must be root to perform this action !</span><span class="nv">$NC</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="nb">exit</span> 1<span class="p">;</span>
+<span class="k">fi</span>
+
+<span class="c1"># vérification avec WHOAMI
+</span><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span>whoami<span class="k">)</span> !<span class="o">=</span> <span class="s1">'root'</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$RC</span><span class="s2"> Must be root to perform this action !</span><span class="nv">$NC</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="nb">exit</span> 1<span class="p">;</span>
+<span class="k">fi</span>
+
+<span class="c1"># vérification avec $USER
+</span><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$USER</span><span class="k">)</span> !<span class="o">=</span> <span class="s1">'root'</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$RC</span><span class="s2"> Must be root to perform this action !</span><span class="nv">$NC</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="nb">exit</span> 1<span class="p">;</span>
+<span class="k">fi</span>
+</pre>
+</div>
+<div class="section" id="operations-utiles-variables-string">
+<h2>Opérations utiles variables String</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Uppercase ou Lowercase, longueur d'une chaîne
+</span>
+<span class="c1"># variable
+</span><span class="nv">min</span><span class="o">=</span><span class="s1">'un texte en minuscule qui doit apparaître en majuscule'</span>
+<span class="nv">maj</span><span class="o">=</span><span class="s1">'UN TEXTE EN MAJUSCULE QUI DOIT APPARAITRE EN MINUSCULE'</span>
+
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">min</span><span class="p">^^</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="si">${</span><span class="nv">maj</span><span class="p">,,</span><span class="si">}</span>
+<span class="nb">echo</span> <span class="s2">&quot;la variable 'min' a une longueur de : </span><span class="si">${#</span><span class="nv">min</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;la variable 'maj' a une longueur de : </span><span class="si">${#</span><span class="nv">maj</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre>
+</div>
+<div class="section" id="parcourir-un-fichier">
+<h2>Parcourir un fichier</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Parcourir un fichier ligne par ligne
+</span><span class="k">while</span> <span class="nb">read</span> line
+<span class="k">do</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$line</span><span class="s2">&quot;</span>
+<span class="k">done</span> &lt; mon_fichier
+</pre>
+</div>
+<div class="section" id="manipuler-les-tableaux">
+<h2>Manipuler les tableaux</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Tableau coloré
+</span><span class="nb">declare</span> -a <span class="nv">colors</span><span class="o">=</span><span class="s1">'(
+                        [0]=&quot;\e[0;m&quot;
+                        [1]=&quot;\e[1;31m&quot;
+                        [2]=&quot;\e[1;32m&quot;
+                        [3]=&quot;\e[1;33m&quot;
+                        [4]=&quot;\e[1;34m&quot;
+                        [5]=&quot;\e[1;35m&quot;
+                   )'</span>
+
+<span class="c1"># Parcourir un tableau
+</span><span class="k">for</span> i in <span class="si">${</span><span class="p">!colors[*]</span><span class="si">}</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="si">${</span><span class="nv">colors</span><span class="p">[i]</span><span class="si">}</span><span class="s2"> waow c'est beau !&quot;</span>
+<span class="k">done</span>
+</pre>
+</div>
+<div class="section" id="creer-des-fonctions">
+<h2>Créer des fonctions</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># création d'une super fonction
+</span>bonjour<span class="o">()</span>
+<span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">&quot;bonjour </span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+bonjour <span class="s2">&quot;mobius&quot;</span>
+</pre>
+</div>
+<div class="section" id="generer-des-mots-de-passe">
+<h2>Générer des mots de passe</h2>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># Générer un mot de passe avec x caractères (ici 36)
+</span>cat /dev/urandom <span class="p">|</span> tr -dc <span class="s1">'0-9a-zA-Z!&#64;#$%^&amp;*_+-'</span> <span class="p">|</span> head -c 36
+</pre>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/i-love-bash-1.html">mar. 24 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/scripting.html" title="View all posts in Scripting" rel="category tag">Scripting</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/i-love-bash-1.html" title="Permalink to I love Bash #1" rel="bookmark">I love Bash #1</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="la-fameuse-stdin">
+<h2>La fameuse STDIN</h2>
+<div class="section" id="preambule">
+<h3>Préambule</h3>
+<p>Tout programme informatique est frillant des entrées et sorties en vue d'interagir avec l'utilisateur soit par l'intermédiaire des périphériques <em>d'entrée</em> comme par exemple le <em>clavier</em> ou encore d'afficher le résultat attendu sur un périphérique de <em>sortie</em> comme <em>l'écran</em>. Un problème subsiste, la diversité des sorties potentielles. En effet, la sortie sur un périphérique comme <em>l'écran</em> aura des mécanismes différents que l'enregistrement de données dans un <em>fichier</em>. Voilà
+pourquoi, nos systèmes dérivés d'Unix, pallient cette difficulté de traitement en considérant que tout est <em>fichier</em> (votre connexion, ...). Cette abstraction est dès lors indispensable en vue de faciliter la prise en charge du pluralisme des sorties.</p>
+</div>
+<div class="section" id="faire-pointer-la-sortie-dans-notre-terminal-ou-encore-une-fenetre">
+<h3>Faire pointer la sortie dans notre terminal ou encore une fenêtre</h3>
+<pre class="code bash literal-block">
+$ <span class="nb">echo</span> Ceci est un exemple
+</pre>
+<p>Ce code précédent permet d'afficher dans votre console le texte <em>Ceci est un exemple</em> grâce à la commande <strong>echo</strong>. Cette commande n'affiche pas uniquement du texte mais tout type <em>d'arguments</em> passés (des variables...). Dans le code ci-dessus, vous remarquerez l'absence de guillemets autour de notre chaîne de caractère et ceci est tout à fait normal : le but est avant tout de comprendre le fonctionnement de la commande, ici la commande echo va bel et bien afficher le texte mais ne va en
+réalité pas comprendre qu'il s'agit d'une seule et même chaîne de caractère mais comme trois arguments distincts. Ainsi, si vous faites le test de la commande suivante :</p>
+<pre class="code bash literal-block">
+$ <span class="nb">echo</span> Ceci             est         un exemple
+</pre>
+<p>Tout les espaces ne vont pas être interprétés car les guillemets sont absentes. Ici, bash va comprendre que vous lui soumettez trois arguments et donc séparer les résultats d'un seul espace. Maintenant faites le test suivant :</p>
+<pre class="code bash literal-block">
+$ <span class="nb">echo</span> <span class="s2">&quot;Ceci      est       un exemple&quot;</span>
+</pre>
+<p>Dans ce cas, bash va bien interpréter les espaces par l'intermédiaire des guillemets, signifiant qu'il s'agit d'un seul et même argument. Une autre précision, l'utilisation des guillemets et des apostrophes n'a pas les mêmes répercussions : si vous utilisez des guillemets <strong>&quot; &quot;</strong>, bash va <em>parser</em> autrement dit analyser véritablement le contenu en interprétant la présence d'éventuelle(s) variable(s) mais si vous optez pour des apostrophes alors les variables seront inopérantes.</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># variable
+</span><span class="nv">prenom</span><span class="o">=</span><span class="s1">'Thomas'</span>
+<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$prenom</span><span class="s2">&quot;</span> <span class="c1"># va renvoyer à l'écran &quot;Thomas&quot;
+</span><span class="nb">echo</span> <span class="s1">'$prenom'</span> <span class="c1"># va renvoyer à l'écran $prenom</span>
+</pre>
+<p>Dans la mesure du possible, il faut utiliser les guillemets lorsque cela est vraiment nécessaire sinon des apostrophes pour maximiser la vitesse d'exécution du programme, car oui l'analyse sous-jacente à l'utilisation des guillemets va ralentir votre script. Vous me croyez pas ? Faites donc alors ce test : enregistrez dans un premier fichier <em>guillemets.sh</em> le code suivant :</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="nv">i</span><span class="o">=</span>0
+<span class="nb">time</span> <span class="k">while</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span> -ne <span class="m">50000</span> <span class="o">]</span><span class="p">;</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Ceci est un test de rapidité&quot;</span> 1&gt;/dev/null <span class="c1"># on redirige la sortie standard vers le périphérique null
+</span>    <span class="nb">let</span> <span class="nv">i</span><span class="o">=</span><span class="nv">$i</span>+1
+<span class="k">done</span>
+</pre>
+<p>Maintenant faites la même chose en enregistrant le code suivant dans un autre fichier <em>apostrophes.sh</em>:</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="nv">i</span><span class="o">=</span>0
+<span class="nb">time</span> <span class="k">while</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span> -ne <span class="m">50000</span> <span class="o">]</span><span class="p">;</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="s1">'Ceci est un test de rapidité'</span> 1&gt;/dev/null <span class="c1"># permet de ne pas voir à l'écran les lignes
+</span>    <span class="nb">let</span> <span class="nv">i</span><span class="o">=</span><span class="nv">$i</span>+1
+<span class="k">done</span>
+</pre>
+<p>Faites les commandes suivantes :</p>
+<pre class="code bash literal-block">
+$ bash guillemets.sh
+$ bash apostrophes.sh
+</pre>
+<p>Vous verrez directement la différence de temps d'exécution des deux scripts et l'avantage d'utiliser les guillemets uniquement si le besoin se fait sentir ! pour ma part la différence est la suivante :</p>
+<pre class="code bash literal-block">
+bash apostrophes.sh
+real 0m1.691s
+user 0m1.470s
+sys  0m0.216s
+
+bash guillemets.sh
+real 0m1.808s
+user 0m1.568s
+sys  0m0.235s
+</pre>
+</div>
+<div class="section" id="designons-notre-sortie">
+<h3>Designons notre sortie</h3>
+<p>Une autre commande très utile et dérivée du langage C est la grande, l'impertinente <em>printf</em>. Le fonctionnement est le suivant : le premier argument est une chaîne de format, les arguments suivants sont mis en forme en toute corrélation avec la chaîne de format matérialisée par <strong>%</strong>.</p>
+<pre class="code bash literal-block">
+$ <span class="nb">printf</span> <span class="s1">'%s = %d\n'</span> Code <span class="nv">$?</span>
+</pre>
+<p>Ce code nous permet de récupérer le code de la dernière commande et de mettre en forme à l'écran l'affichage grâce à la commande <em>printf</em>. L'instruction <em>%s</em> permet de préciser qu'il s'agit d'une chaîne de caractère (<em>s</em> pour <em>string</em>) et <em>%d</em> permet de préciser qu'il s'agit d'un nombre (<em>d</em> pour <em>decimal</em>). Enfin le caractère <em>n</em> permet de sauter une ligne dans une interface commande (<em>n</em> pour <em>newline</em>).</p>
+</div>
+<div class="section" id="ecrire-une-chaine-de-caractere-sans-sauter-de-ligne">
+<h3>Ecrire une chaîne de caractère sans sauter de ligne :</h3>
+<p>Les deux instructions <em>echo</em> comme <em>printf</em> permettent de répondre à cette problématique :</p>
+<pre class="code bash literal-block">
+$ <span class="nb">echo</span> -n <span class="s1">'Super exemple'</span> <span class="c1"># -n permet de ne pas sauter de ligne
+</span>$ <span class="nb">echo</span> -e <span class="s1">'Super exemple\c'</span> <span class="c1"># -e permet d'interpréter les séquences d'échappement
+</span>$ <span class="nb">printf</span> <span class="s2">&quot;%s&quot;</span> Super exemple
+</pre>
+</div>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/securite-scripting.html">mar. 24 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/scripting.html" title="View all posts in Scripting" rel="category tag">Scripting</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/securite-scripting.html" title="Permalink to Sécurité scripting" rel="bookmark">Sécurité scripting</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="faire-un-script-securise">
+<h2>Faire un script sécurisé</h2>
+<div class="section" id="regles-generales">
+<h3>Règles générales</h3>
+<ul class="simple">
+<li><strong>Valider</strong> toutes les entrées externes ainsi que toutes les saisies interactives</li>
+<li><strong>Ne jamais</strong> utiliser une instruction <em>eval</em> sur une entrée non sûre</li>
+<li><strong>Utiliser</strong> des fichiers <em>temporaires</em> <strong>sécurisés</strong></li>
+<li><strong>Vérifier</strong> que les programmes <em>exécutables externes</em> sont sûrs</li>
+</ul>
+<div class="section" id="contrer-usurpation-de-l-interpreteur">
+<h4>Contrer usurpation de l'interpréteur</h4>
+<p>Il suffit d'ajouter un tiret à la fin du <em>shebang</em> pour éviter les attaques par usurpation avec les droits administrateur (<strong>setuid root</strong>). En effet, en l'absence du tiret, le système va chercher à interpréter les paramètres qui accompagne l'interpréteur c'est pourquoi le rajout d'un tiret permet de <em>figer</em> le chemin de bash. Attention toutefois, dans certains cas ce <em>shebang</em> peut rencontrer des problèmes de portabilité.</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -</span>
+</pre>
+</div>
+<div class="section" id="fixer-la-variable-path">
+<h4>Fixer la variable $PATH</h4>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># définir un chemin
+</span><span class="nv">PATH</span><span class="o">=</span><span class="s1">'/usr/local/bin:/bin:usr/bin'</span>
+<span class="nb">export</span> PATH
+</pre>
+</div>
+<div class="section" id="se-mefier-toujours-des-alias">
+<h4>Se méfier toujours des alias</h4>
+<p>Un alias malveillant peut conduire à des opérations critiques sur votre système et par corollaire il est impératif de les effacer.</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># supression des alias
+</span><span class="se">\u</span>nalias -a
+</pre>
+<p>En effet, une personne malveillante va chercher à faire exécuter une commande pour obtenir un accès à des données ou des privilèges qui lui sont interdits. Imaginons par exemple que votre commande <em>ls</em> a été modifié par un alias malveillant, il y aura de fortes probabilités que le duperie porte ses fruits. Ainsi, la solution la plus adéquate pour pallier à ce problème de sécurité est de supprimer tous les alias. Notons que le caractère placé en début de commande unalias permet d'éviter
+la programmation d'alias. Voilà à ce quoi par exemple vous êtes exposés si vous n'utilisez pas cette commande :</p>
+<pre class="code bash literal-block">
+$ <span class="nb">alias</span> <span class="nv">pwd</span><span class="o">=</span><span class="nb">echo</span>
+$ <span class="nb">alias</span> <span class="nv">echo</span><span class="o">=</span>ls
+</pre>
+</div>
+<div class="section" id="proteger-la-memoire">
+<h4>Protéger la mémoire</h4>
+<p>Lorsque Bash exécute des commandes, il mémorise l'emplacement de celles qui se trouvent dans la variable $PATH en vue d'accélérer et donc d'optimiser les appels ultérieurs. Ainsi si une personne malveillante réussit à faire exécuter une commande à un utilisateur (voir même au <em>root</em>), il pourra réussir à obtenir des accès ou des privilèges qui lui sont interdits. Voilà pourquoi il nous faut utiliser la commande <strong>hash -r</strong> pour effacer les commandes mémorisées.</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="c1"># effacer toutes les commandes enregistrées en mémoire
+</span><span class="nb">hash</span> -r
+</pre>
+</div>
+</div>
+</div>
+<div class="section" id="recapitulatif-d-un-script-securise">
+<h2>Récapitulatif d'un script sécurisé :</h2>
+<p>Voici le code source d'un script convenablement <strong>sécurisé</strong> :</p>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -r
+</span>
+<span class="c1">#--------------------------------------------------------------------------------
+# MODELE SCRIPT SECURISE
+#--------------------------------------------------------------------------------
+</span>
+<span class="c1"># Chemin PATH
+</span><span class="nv">PATH</span><span class="o">=</span><span class="s1">'/usr/local/bin:/bin:/usr/bin'</span>
+<span class="se">\e</span>xport PATH
+
+<span class="c1"># Suppression des alias
+</span><span class="se">\u</span>nalias -a
+
+<span class="c1"># Suppression des commandes mémorisées
+</span><span class="nb">hash</span> -r
+
+<span class="c1"># Désactivation des fichiers core
+</span><span class="nb">ulimit</span> -H -c <span class="m">0</span> --
+
+<span class="c1"># IFS sécurisé
+</span><span class="nv">IFS</span><span class="o">=</span><span class="s1">$' \t\n'</span>
+
+<span class="c1"># Protection umask
+</span><span class="nv">UMASK</span><span class="o">=</span>002
+<span class="nb">umask</span> <span class="nv">$UMASK</span>
+
+<span class="k">until</span> <span class="o">[</span> -n <span class="s2">&quot;</span><span class="nv">$rep_temp</span><span class="s2">&quot;</span> -a ! -d <span class="s2">&quot;</span><span class="nv">$rep_temp</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nv">rep_temp</span><span class="o">=</span><span class="s2">&quot;/tmp/prefixe.</span><span class="si">${</span><span class="nv">RANDOM</span><span class="si">}${</span><span class="nv">RANDOM</span><span class="si">}${</span><span class="nv">RANDOM</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+mkdir -p -m <span class="m">0700</span> <span class="nv">$rep_temp</span> <span class="se">\
+</span>    <span class="o">||</span> <span class="o">(</span><span class="nb">echo</span> <span class="s2">&quot;Erreur : impossible de créer le répertoire temporaire&quot;</span> <span class="se">\
+</span>        <span class="s2">&quot;'</span><span class="nv">$rep_temp</span><span class="s2">' : </span><span class="nv">$?</span><span class="s2">&quot;</span><span class="p">;</span> <span class="nb">exit</span> 100<span class="o">)</span>
+
+<span class="c1"># Nettoyer les fichiers temporaires
+</span><span class="nv">fich_temp</span><span class="o">=</span><span class="s2">&quot;rm -rf </span><span class="nv">$rep_temp</span><span class="s2">&quot;</span>
+<span class="nb">trap</span> <span class="s2">&quot;</span><span class="nv">$fich_temp</span><span class="s2">&quot;</span> ABRT EXIT HUP INT QUIT
+</pre>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/commandes-de-ladmin-1.html">lun. 23 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/memento.html" title="View all posts in Memento" rel="category tag">Memento</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/commandes-de-ladmin-1.html" title="Permalink to Commandes de l'admin #1" rel="bookmark">Commandes de l'admin #1</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="adduser-options-utilisateur-group">
+<h2>adduser [options] <strong>utilisateur</strong> [group]</h2>
+<p>Cette commande permet à l'administrateur de <strong>rajouter un utilisateur</strong> sur le système. Nous allons voir les principaux arguments que <strong>adduser</strong> peut prendre (<em>liste non exhaustive</em>)</p>
+<ul class="simple">
+<li><strong>--home</strong> permet de définir l'emplacement précis du dossier de l'utilisateur (par défaut <strong>/home/nom_du_user/</strong>)</li>
+<li><strong>--no-create-home</strong> permet de ne pas créer un dossier lors de la création de l'utilisateur</li>
+<li><strong>--system</strong> permet de préciser que l'utilisateur est un utilisateur système</li>
+<li><strong>--shell</strong> permet de préciser le shell qui sera utilisé par l'utilisateur</li>
+<li><strong>--group</strong> permet de créer le groupe de l'utilisateur</li>
+<li><strong>--ingroup</strong> permet de définir le groupe principal de l'utilisateur</li>
+<li><strong>--uid</strong> permet de définir le <em>user id</em> soit l'identifiant de l'utilisateur</li>
+<li><strong>--gid</strong> permet de définir le <em>group id</em> soit l'identifiant du groupe de l'utilisateur</li>
+<li><strong>--disabled-password</strong> la commande passwd n'est pas exécutée le compte sera dès lors verrouillé</li>
+<li><strong>--disabled-login</strong> permet de désactiver l'authentification par mot de passe, seul l'accès avec clés SSH RSA est opérant</li>
+</ul>
+</div>
+<div class="section" id="apt-cache-options-commande-paquet">
+<h2>apt-cache [options] <em>commande</em> <strong>paquet</strong></h2>
+<p>Cette commande permet d'obtenir des <strong>informations sur les paquets</strong> issus de la base de donnée Internet et du cache mis à jour depuis les sources (<em>/etc/apt/sources.list</em>).</p>
+<ul class="simple">
+<li><strong>add</strong> permet de rajouter un paquet au cache</li>
+<li><strong>search</strong> permet d'effectuer une recherche par mot-clés dans les noms et en-têtes des paquets connus</li>
+<li><strong>stats</strong> permet de récupérer des informations statistiques de base sur le cache utilisé</li>
+<li><strong>show</strong> permet de récupérer des informations descriptives sur le paquet ainsi que sur ses dépendances</li>
+<li><strong>depends</strong> permet de récupérer l'ensemble des dépendances du paquets</li>
+<li><strong>pkgnames</strong> permet de lister l'ensembles des noms des paquets</li>
+<li><strong>-i</strong> permet de n'afficher que les dépendances importantes</li>
+</ul>
+</div>
+<div class="section" id="apt-cdrom-options-d-commande">
+<h2>apt-cdrom [options] [-d] <em>commande</em></h2>
+<p>cette commande permet de <strong>rajouter un nouveau cd-rom</strong> à la liste des sources d'installation disponibles.</p>
+<ul class="simple">
+<li><strong>add</strong> ajoute un cd-rom à la liste des sources</li>
+<li><strong>-d point de montage</strong> spécifie le point de montage du cd-rom à analyser</li>
+<li><strong>-f</strong> permet de copier rapidement (part du principe que les paquets sont valides) en ne procédant à aucune vérification</li>
+<li><strong>-r</strong> permet de changer le nom d'un disque</li>
+</ul>
+</div>
+<div class="section" id="apt-get-options-commande-paquet">
+<h2>apt-get [options] <em>commande</em> <strong>paquet</strong></h2>
+<p>cette commande permet d'interagir avec la <strong>gestion des paquets</strong>.</p>
+<ul class="simple">
+<li><strong>update</strong> permet de mettre à jour la base de données des paquets du cache (<em>/etc/apt/sources.list</em>) en décrivant les paquets</li>
+<li><strong>install</strong> permet d'installer un paquet ou plusieurs paquets</li>
+<li><strong>remove</strong> permet de supprimer un paquet ou plusieurs paquets</li>
+<li><strong>check</strong> permet de mettre à jour le cache des paquets mais aussi de rechercher les dépendances cassées</li>
+<li><strong>source</strong> permet de récupérer la source d'un paquet</li>
+<li><strong>clean</strong> permet de nettoyer le dépôt local de paquets téléchargé</li>
+<li><strong>-d</strong> permet de télécharger le ou les paquets sans procéder à l'installation ni la décompression</li>
+<li><strong>-f</strong> tenter de corriger les dépendances cassées</li>
+<li><strong>-s</strong> permet de simuler une commande sans effectuer réellement les opérations à effectuer</li>
+<li><strong>-y</strong> permet de valider automatiquement les questions (lors des installations, suppressions...)</li>
+<li><strong>-q</strong> permet d'activer le quiet mode autrement dit un mode moins verbueux</li>
+<li><strong>--no-upgrade</strong> permet de ne pas mettre à jour les paquets installés</li>
+<li><strong>--purge</strong> permet de supprimer les fichiers de configuration d'un paquet</li>
+<li><strong>--reinstall</strong> permet de réinstaller un paquet dans sa dernière version</li>
+</ul>
+</div>
+<div class="section" id="apt-setup">
+<h2>apt-setup</h2>
+<p>cette commande permet <strong>d'ajouter des sources</strong> d'installation supplémentaire.</p>
+</div>
+<div class="section" id="aptitude">
+<h2>aptitude</h2>
+<p>cette commande permet de fournir une interface en mode console en vue de faciliter la <strong>gestion des paquets</strong>.</p>
+</div>
+<div class="section" id="at-options-date">
+<h2>at [options] <em>date</em></h2>
+<p>Cette commande permet de <strong>planifier l'exécution</strong> unique d'un script ou d'une commande.</p>
+<ul class="simple">
+<li><strong>-f</strong> permet d'inclure un fichier (script)</li>
+<li><strong>atq</strong> permet de lister les commandes en attente d'exécution</li>
+<li><strong>atrm</strong> permet de supprimer une tâche en attente</li>
+</ul>
+</div>
+<div class="section" id="base-config">
+<h2>base-config</h2>
+<p>Cette commande permet de <strong>relancer le processus de post-installation</strong> pour une reconfiguration.</p>
+</div>
+
+		</div> <!--/#entry-content-->
+    		<span class="tag-links"><strong>Tagged</strong>
+ <a href="https://tom-admin.github.io/tag/administration.html" rel="tag">administration</a>,  <a href="https://tom-admin.github.io/tag/commandes.html" rel="tag">commandes</a>,  <a href="https://tom-admin.github.io/tag/debian.html" rel="tag">debian</a>,  <a href="https://tom-admin.github.io/tag/memento.html" rel="tag">memento</a>    		</span>
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/shell-memento-2.html">lun. 23 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/tom-admin.html">tom-admin</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/memento.html" title="View all posts in Memento" rel="category tag">Memento</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/shell-memento-2.html" title="Permalink to Shell Memento #2" rel="bookmark">Shell Memento #2</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="les-boucles">
+<h2>Les Boucles</h2>
+<div class="section" id="structure-de-base">
+<h3>Structure de base</h3>
+<pre class="code bash literal-block">
+<span class="c1"># tant que ma condition est vérifiée faire
+</span><span class="k">while</span> <span class="o">[</span> condition <span class="o">]</span><span class="p">;</span>
+<span class="k">do</span>
+    action<span class="o">(</span>s<span class="o">)</span>
+<span class="k">done</span>
+
+<span class="c1"># tant que avec un for
+</span><span class="k">for</span> i in ma_variable
+<span class="k">do</span>
+    action<span class="o">(</span>s<span class="o">)</span>
+<span class="k">done</span>
+
+<span class="c1"># jusqu'à ce que ma condition précisée soit réalisée
+</span><span class="k">until</span> <span class="o">[</span> condition <span class="o">]</span>
+<span class="k">do</span>
+    action<span class="o">(</span>s<span class="o">)</span>
+<span class="k">done</span>
+</pre>
+</div>
+<div class="section" id="exemples">
+<h3>Exemples :</h3>
+<pre class="code bash literal-block">
+<span class="c1"># exemple boucle while
+# variable
+</span><span class="nv">i</span><span class="o">=</span>0
+
+<span class="c1"># action
+</span><span class="k">while</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span> -ne <span class="m">10</span> <span class="o">]</span><span class="p">;</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">. coucou&quot;</span>
+    <span class="nb">let</span> <span class="nv">i</span><span class="o">=</span><span class="nv">$i</span>+1
+<span class="k">done</span>
+
+<span class="c1"># exemple boucle for
+#variable
+</span><span class="nb">declare</span> -a <span class="nv">tableau</span><span class="o">=</span><span class="s1">'([0]=&quot;pomme&quot; [1]=&quot;kiwi&quot; [2]=&quot;orange&quot;)'</span>
+
+<span class="c1"># action
+</span><span class="k">for</span> i in <span class="si">${</span><span class="p">!tableau[*]</span><span class="si">}</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">tableau</span><span class="p">[i]</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+
+<span class="c1"># exemple boucle until
+# variable
+</span><span class="nv">i</span><span class="o">=</span>0
+<span class="k">until</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span> -eq <span class="m">10</span> <span class="o">]</span><span class="p">;</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">. coucou&quot;</span>
+    <span class="nb">let</span> <span class="nv">i</span><span class="o">=</span><span class="nv">$i</span>+1
+<span class="k">done</span>
+</pre>
+</div>
+<div class="section" id="cas-speciaux-complexes">
+<h3>Cas spéciaux / complexes :</h3>
+<pre class="code bash literal-block">
+<span class="c1"># boucle for avec liste des arguments
+</span><span class="k">for</span> i in <span class="nv">$*</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+
+<span class="c1"># boucle for listant un résultat d'une commande
+</span><span class="k">for</span> i in <span class="k">$(</span>ls /home/<span class="nv">$USER</span><span class="k">)</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+
+<span class="c1"># boucle infinie
+</span><span class="k">while</span> <span class="nb">true</span>
+
+<span class="c1"># boucle while tant que le nombre d'arguments est différent de 0
+</span><span class="k">while</span> <span class="o">[</span> <span class="nv">$#</span> -ne <span class="m">0</span> <span class="o">]</span><span class="p">;</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="s2">&quot;ok&quot;</span>
+<span class="k">done</span>
+</pre>
+</div>
+<div class="section" id="instructions-utiles">
+<h3>Instructions utiles :</h3>
+<ul class="simple">
+<li><strong>break</strong> permet de sortir <em>casser</em> une boucle</li>
+<li><strong>continue</strong> permet de passer à l'itération suivante précisée dans la boucle</li>
+<li><strong>exit [x]</strong> permet de sortir d'un script shell avec le statut <em>x</em> : <strong>0</strong> pour succès, <strong>1</strong> pour erreur ainsi que toute valeur <strong>x</strong> différente de 0</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3>Exemples :</h3>
+<pre class="code bash literal-block">
+<span class="c1"># boucle avec l'instruction break
+# variable
+</span><span class="nv">i</span><span class="o">=</span>0
+
+<span class="c1"># action
+</span><span class="k">while</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span> -ne <span class="m">4</span> <span class="o">]</span><span class="p">;</span>
+<span class="k">do</span>
+    <span class="nb">let</span> <span class="nv">i</span><span class="o">=</span><span class="nv">$i</span>+1
+    <span class="nb">echo</span> <span class="s2">&quot;La boucle s'arrête dès que </span><span class="nv">$i</span><span class="s2"> aura la valeur 3 pour le moment i=</span><span class="nv">$i</span><span class="s2">&quot;</span>
+    <span class="k">if</span> <span class="o">[</span><span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span> -eq <span class="m">3</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+        break<span class="p">;</span>
+    <span class="k">fi</span>
+<span class="k">done</span>
+
+<span class="c1"># boucle avec l'instruction exit
+# variable
+</span><span class="nv">i</span><span class="o">=</span>0
+
+<span class="c1"># action
+</span><span class="k">while</span> <span class="o">[</span><span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span> -ne <span class="m">4</span> <span class="o">]</span><span class="p">;</span>
+<span class="k">do</span>
+    <span class="nb">let</span> <span class="nv">i</span><span class="o">=</span><span class="nv">$i</span>+1
+    <span class="nb">echo</span> <span class="s2">&quot;Le script s'arrête dès que i aura la valeur 3, pour le moment i=</span><span class="nv">$i</span><span class="s2">&quot;</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span> -eq <span class="m">3</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+        <span class="nb">exit</span> 1<span class="p">;</span>
+    <span class="k">fi</span>
+<span class="k">done</span>
+</pre>
+<p>En pratique la commande <strong>break</strong> fonctionne mais dans beaucoup de cas elle s'avère inutile, car un script correctement codé devrait bien implémenter les cas dans lesquels la boucle doit s'arrêter.</p>
+</div>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="navigation">
+		<div class="nav-next"><a href="https://tom-admin.github.io/index2.html" >Older posts <span class="meta-nav">&rarr;</span></a></div>
+</div>
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://getpelican.com">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

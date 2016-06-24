@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+		<title>tom-admin &mdash; Articles by Mobius</title>
+		<meta charset="utf-8" />
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="https://tom-admin.github.io/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/atom+xml"
+			title="tom-admin — Flux Atom"
+			href="https://tom-admin.github.io/" /> 
+		<!--[if lte IE 8]><script src="https://tom-admin.github.io/theme/js/html5shiv.js"></script><![endif]-->
+</head>
+
+<body class="home blog custom-background " >
+	<div id="container">
+		<div id="header">
+				<h1 id="site-title"><a href="https://tom-admin.github.io">tom-admin</a></h1>
+<h2 id="site-description">#!/dev/tom-admin</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/astuces.html">Astuces</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/linux.html">Linux</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/memento.html">Memento</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/pelican.html">Pelican</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/python.html">Python</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/revisions.html">Révisions</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/scripting.html">Scripting</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+	<h2>Posted by <span>Mobius</span> &hellip;</h2>
+		</div>
+	
+		<div id="contents">
+<div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/le-graal-retrouve-bash.html">dim. 22 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/scripting.html" title="View all posts in Scripting" rel="category tag">Scripting</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/le-graal-retrouve-bash.html" title="Permalink to Le graal retrouvé : BASH" rel="bookmark">Le graal retrouvé : <strong>BASH</strong></a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="prelude">
+<h2>Prélude</h2>
+<div class="section" id="qu-est-ce-que-le-shell-bash">
+<h3>Qu'est-ce que le shell bash ?</h3>
+<p>Toutes les distributions <strong>GNU/LINUX</strong> de nos jours, utilisent des <strong>environnement graphiques</strong> sophistiqués, facilitant l'usage du système d'exploitation pour l'utilisateur. Ainsi, toutes les tâches quotidiennes deviennent aisées à réaliser sans mettre véritablement les mains dans le <em>cambouis</em>. Imaginons par exemple qu'un utilisateur souhaite copier un fichier dans un autre dossier que celui dans lequel il se trouve actuellement. Pour se faire il suffira qu’il le sélectionne à l’aide de sa souris, qu’il clique du droit sur ce fichier, sélectionnera copier puis ira dans l’arborescence choisie pour aller le coller. Ainsi, c’est <strong>l’abstraction totale des instructions en console</strong> qui est permise par <strong>l’interface graphique</strong> (<em>GUI</em> en anglais pour <em>Graphical User Interface</em>). Mais, dès lors qu’un utilisateur souhaitera utiliser, manipuler des fonctions complexes inhérentes au système d’exploitation, il ne pourra recourir qu’à de rares occasions à l’utilisation de l’interface graphique, l’utilisation de la ligne de commande (dans un jargon plus informatique on parlera de <em>CLI</em> pour <em>Command Line Interface</em>) s’imposera d’elle-même. C’est la raison de ce tutoriel, vous expliquer en détails (du moins j’essayerai) le fonctionnement de <strong>l’interpréteur de commandes</strong> (appelé couramment <em>shell</em>) <strong>Bash</strong>, qui deviendra un allié puissant pour intéragir avec le noyau du système (encore une fois dans un jargon plus informatique le noyau est dit le <strong>kernel</strong> soit le coeur de votre système d’exploitation). En résumé, le <strong>shell</strong> est la <em>coquille du noyau</em>, permettant de dialoguer directement avec lui, en lui soumettant des commandes, des instructions précises à exécuter. Avant de commencer, il faut savoir que ce tutoriel se dédie spécifiquement au <strong>shell Bash</strong>, car oui en réalité pléthore de shells sont disponibles pour intérargir avec votre système, disposant chacun de caractéristiques propres mais qui dans l’ensemble adoptent une logique similaire. Voici quelques autres coquilles, shells utilisables sous un système GNU/Linux :</p>
+<ul class="simple">
+<li><em>sh</em> : créé par <strong>Ken Thompson</strong> en 1971 qui marque le premier shell disponible sur tous les systèmes Unix (<strong>à ne pas confondre avec Linux</strong>)</li>
+<li><em>sh</em> : Bourne Shell remplaçant le shell de <strong>Ken Thompson</strong></li>
+<li><em>bash</em> : <strong>Bourne Again Shell</strong> l'objet de notre étude</li>
+<li><em>ksh</em> : Korn Shell</li>
+<li><em>csh</em> : C Shell</li>
+<li><em>zsh</em> : Z Shell</li>
+<li>[...] et bien d'autres encore</li>
+</ul>
+<p>Si j’ai opté pour vous expliquer le shell Bash, c’est tout simplement par soucis d’usage courant : en effet, ce shell est sur la plupart des distributions GNU/Linux le shell par défaut. En fait, le bash est le substrat du shell sh (le Bourne Shell, le deuxième élément de notre liste ci-dessus), agrémentés de fonctionnalités empruntés à ksh et csh. Pour information, le bash n’est pas uniquement présent ou utilisable que sur les distributions GNU/Linux mais aussi il sera efficient sur MacOS ainsi que Windows. On dira alors que bash est multi-plateforme. Les shells et ce en totale abstraction de leur type (que ce soit bash, ksh …) vont être exploitables au sein d’un terminal, comprenons par là une machine ne comportant que le strict nécessaire pour interpréter des instructions saisies par l’intermédiaire du clavier (périphérique dit d’entrée ou en anglais input device), et d’en visualiser les résultats sur une sortie écran (périphérique de sortie ou en anglais output device). Pour les curieux, aujourd’hui nous distinguons deux types de terminaux : les vrais, ceux ayant une réalité physique (en somme de vrais périphériques, matériels) et des pseudo terminaux, reposant sur des programmes simulant le fonctionnement des terminaux physiques. Ainsi, sous une distribution GNU/Linux vous trouverez des consoles virtuelles textuelles (par exemple si votre distribution n’incorpore pas d’environnement graphique, votre système d’exploitation démarerra  sur cette console virtuelle), et des consoles graphiques (xterm, eterm ou konsole) qui sont des émulateurs s’utilisant par l’intermédiaire d’un environnement graphique (présence de fenêtres/composants graphiques).
+Une dernière chose, avant de commencer notre périple, comme je l’ai dis précédemment, le shell est toujours en attente d’instructions saisies par l’intermédiaire de votre clavier pour en afficher les résultats sur votre périphérique de sortie, l’écran, il faudra néanmoins apprendre à parler le langage du shell sans quoi, le noyau (kernel) ne saurait interpréter votre requête et n’affichera dès lors qu’une série d’erreurs à l’écran. Donc nous allons apprendre le langage qui vous permettra d’utiliser le shell et de dialoguer correctement avec votre noyau sans être insulter par des erreurs incessantes.</p>
+</div>
+<div class="section" id="quand-le-shell-nous-invite-chez-lui">
+<h3>Quand le shell nous invite chez lui</h3>
+<p>Comme nous l’avons explicité précédemment, le shell est toujours en proie à des discussions nouvelles avec l’utilisateur, attendant des saisies de ce-dernier par son clavier. Dans un jargon plus informatique nous qualifions souvent le shell d’invite de commande (prompt en anglais). Ainsi, dès que vous ouvrez un terminal, vous pouvez voir un petit curseur clignotant, matérialisant votre saisie.
+Ne vous inquiétez pas si votre shell n’a pas exactement la même apparence que le mien, je l’ai modifié afin qu’il affiche uniquement les informations dont j’ai besoin. Nous apprendrons par ailleurs plus loin comment le personnaliser à sa libre convenance. Bon, théoriquement votre terminal une fois ouvert vous affiche une ligne de ce genre :</p>
+<img alt="" src="images/1.gif" />
+<p>Ne vous inquiétez pas si votre shell n’a pas exactement la même apparence que le mien, je l’ai modifié afin qu’il affiche uniquement les informations dont j’ai besoin. Nous apprendrons par ailleurs plus loin comment le personnaliser à sa libre convenance. Bon, théoriquement votre terminal une fois ouvert vous affiche une ligne de ce genre :</p>
+<pre class="code bash literal-block">
+antoine&#64;learntux:/home/Desktop&gt;
+</pre>
+<p>Cette ligne vous donne plusieurs informations, la première l’utilisateur utilisant actuellement le terminal, c’est l’information la plus à gauche (ici l’utilisateur est antoine que j’ai surligné en rouge), ensuite le fameux « &#64; » signifiant tout simplement chez (pour information le &#64; provient du mot anglais « at »), puis apparaît le nom d’hôte (hostname en anglais) soit le nom de la machine utilisée (ici la machine s’appelle learntux que j’ai surligné en bleu), puis vient s’ajouter la ligne /home/Desktop qui symbolise le chemin où vous trouvez actuellement (ici mon terminal est ouvert dans le dossier Desktop qui est lui-même contenu dans le dossier home). Donc traduisons maintenant tout ce que je vous ai expliqué en français : un utilisateur antoine utilise sa machine portant le nom de learntux et est entrain de manipuler le terminal actuellement ouvert dans le dossier Desktop (je n’ai pas expliqué le symbole. Mais .. qu’est-ce que ce dernier symbole &gt; ? C’est très simple, c’est ce que l’on appelle la terminaison standard du bash qui est inhérente à tout utilisateur lambda (autrement dit l’utilisateur ici antoine est un vulgaire gueux qui n’a d’autorité, de droits spécifiques sur la machine, il est limité sur sa propre machine).</p>
+<ul class="simple">
+<li><strong>$</strong> indiquant encore une fois que l’utilisateur est un vulgaire gueux n’ayant pas des droits particuliers sur la machine</li>
+<li><strong>#</strong> indique quant à lui que l’utilisateur est à son apogée sociale, c’est le root (administrateur) de la machine, disposant de droits exclusifs sur sa machine, lui conférant sens du contrôle et maîtrise en son art. Il faudra toujours veiller à n’utiliser ce compte que lorsque cela est véritablement nécessaire (pour maximiser ainsi la sécurité de son système d’exploitation).</li>
+</ul>
+<p>Un autre caractère spécifique est à connaître mais celui-ci n’ayant plus de rapport avec l’utilisateur mais avec l’emplacement où vous vous trouvez:</p>
+<ul class="simple">
+<li><strong>~</strong> le caractère tilde (pour le faire ALT Gr + 2) indiquant que vous vous trouvez dans votre répertoire personnel (/home/nomutilisateur par exemple le ~ pour notre utilisateur antoine de tout à l’heure est équivalent à /home/antoine)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="experimentation-concrete">
+<h2>Expérimentation concrète</h2>
+<p>Je vous propose maintenant d’expérimenter concrètement et de vous confronter à cette fameuse bête noire : le terminal. Alors, je vais partir du principe que vous utilisez une distribution GNU/Linux dite « <em>User-Friendly</em> » c’est à dire facile pour l’utilisateur et répandue d’une manière courante chez les utilisateurs non professionnels. Ainsi, si vous utilisez Ubuntu, ou l’une de ses variantes (xubuntu, kubuntu, lubuntu …) la procédure sera la suivante :</p>
+<ol class="arabic simple">
+<li>Utiliser le raccourci <strong>CTRL+ALT+T</strong> qui théoriquement ouvrira un terminal à l’écran</li>
+<li>Presser la touche <strong>ALT+F2</strong> et écrire : <strong>xfce4-terminal</strong> si votre distribution est xubuntu puis valider, <strong>konsole</strong> si vous utiliser Kubuntu, <strong>lxde-terminal</strong> si votre distribution est Lubuntu</li>
+<li>Parcourir le menu général de votre distribution GNU/Linux et trouver l’un des mots suivants : <strong>console</strong> / <strong>konsole</strong> / <strong>terminal</strong></li>
+</ol>
+<p>Voilà, normalement au moment où vous lisez ces lignes, une fenêtre sombre et mystérieuse est apparue à l’écran. Mise en garde, si vous choisissez de continuer la lecture de ce tutoriel, vous ne pourrez plus jamais continuer d’utiliser votre système GNU/Linux uniquement par l’intermédiaire de votre environnement graphique, la console deviendra votre meilleur ami. Bon je vous propose dès maintenant de dialoguer avec votre ami, car effectivement le bash est un langage interprété et non compilé, autrement dit directement compris au sein d’un interpréteur (shell bash) utilisable dans la console à l’écran. Ainsi, à la grande différence des langages compilés (à l’instar du C, Java …), il n’y a pas une étape intermédiaire demandant de retranscrire le code en langage binaire (on parle d’absence de compilation). Essayer par exemple de taper la commande suivante et valider par la touche &lt;Entrée&gt; :</p>
+<pre class="code bash literal-block">
+$ <span class="nb">echo</span> <span class="s2">&quot;Le bash trop cool&quot;</span>
+</pre>
+<p>Le résultat suivant apparaît dès lors à la console :</p>
+<img alt="" src="images/2.png" />
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/shell-memento-i.html">dim. 22 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/memento.html" title="View all posts in Memento" rel="category tag">Memento</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/shell-memento-i.html" title="Permalink to Shell Memento #I" rel="bookmark">Shell Memento #I</a>
+		</h2>
+		<div class="entry-content">
+			<div class="section" id="effectuer-des-tests">
+<h2>Effectuer des tests</h2>
+<div class="section" id="structure-de-base">
+<h3>Structure de base</h3>
+<pre class="code bash literal-block">
+<span class="c1"># si ma condition est vraie alors faire
+</span><span class="k">if</span> condition
+    <span class="k">then</span> action<span class="o">(</span>s<span class="o">)</span>
+<span class="k">fi</span>
+
+<span class="c1"># si ma condition est vraie faire sinon faire
+</span><span class="k">if</span> condition
+    <span class="k">then</span> action<span class="o">(</span>s<span class="o">)</span>
+    <span class="k">else</span> action<span class="o">(</span>s<span class="o">)</span>
+<span class="k">fi</span>
+
+<span class="c1"># si ma condition est vraie faire sinon si ma condition2 est vraie faire sinon
+</span><span class="k">if</span> condition
+    <span class="k">then</span> action<span class="o">(</span>s<span class="o">)</span>
+    <span class="k">elif</span> condition<span class="p">;</span> <span class="k">then</span> action<span class="o">(</span>s<span class="o">)</span> <span class="c1"># libre à nous de rajouter encore des elif
+</span>    <span class="k">else</span> action<span class="o">(</span>s<span class="o">)</span>
+<span class="k">fi</span>
+</pre>
+</div>
+<div class="section" id="exemples">
+<h3>Exemples :</h3>
+<pre class="code bash literal-block">
+<span class="c1"># exemple avec une seule condition
+</span><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span>whoami<span class="k">)</span> !<span class="o">=</span> <span class="s2">&quot;root&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;only root can perform this action&quot;</span><span class="p">;</span> <span class="nb">exit</span> 1<span class="p">;</span><span class="k">fi</span>
+
+<span class="c1"># exemple avec plusieurs conditions
+</span><span class="nb">read</span> -p <span class="s2">&quot;Saisir votre note : &quot;</span> note
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$note</span><span class="s2">&quot;</span> -ge <span class="m">16</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;Excellent&quot;</span>
+    <span class="k">elif</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$note</span><span class="s2">&quot;</span> -ge <span class="m">14</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;Bravo&quot;</span>
+    <span class="k">elif</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$note</span><span class="s2">&quot;</span> -ge <span class="m">12</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;Assez bien&quot;</span>
+    <span class="k">elif</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$note</span><span class="s2">&quot;</span> -ge <span class="m">10</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;Passable&quot;</span>
+    <span class="k">elif</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$note</span><span class="s2">&quot;</span> -le <span class="m">10</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;Nul&quot;</span>
+<span class="k">fi</span>
+</pre>
+</div>
+<div class="section" id="operateurs-comparaisons-fichiers">
+<h3>Opérateurs comparaisons fichiers :</h3>
+<ul class="simple">
+<li><strong>-a</strong> vrai si le fichier existe bel et bien (<em>a</em> -&gt; <strong>all</strong>)</li>
+<li><strong>-b</strong> vrai si le fichier existe <strong>et</strong> est de type bloc (<em>b</em> -&gt; <strong>block-type</strong>)</li>
+<li><strong>-c</strong> vrai si le fichier existe <strong>et</strong> est de type caractère (<em>c</em> -&gt; <strong>character</strong>)</li>
+<li><strong>-f</strong> vrai si le fichier existe <strong>et</strong> est de type fichier (<em>f</em> -&gt; <strong>file type</strong>)</li>
+<li><strong>-d</strong> vrai si le fichier existe <strong>et</strong> est un répertoire (<em>d</em> -&gt; <strong>directory</strong>)</li>
+<li><strong>-r</strong> vrai si le fichier existe <strong>et</strong> est accessible en lecture (<em>r</em> -&gt; <strong>read</strong>)</li>
+<li><strong>-w</strong> vrai si le fichier existe <strong>et</strong> est accessible en écriture (<em>w</em> -&gt; <strong>write</strong>)</li>
+<li><strong>-x</strong> vrai si le fichier existe <strong>et</strong> est exécutable (<em>x</em> -&gt; <strong>execute</strong>)</li>
+<li><strong>-G</strong> vrai si le fichier existe <strong>et</strong> appartient au groupe de l'utilisateur courant (<em>G</em> -&gt; <strong>Group</strong>)</li>
+<li><strong>-O</strong> vrai si le fichier existe <strong>et</strong> appartient à l'utilisateur courant (<em>O</em> -&gt; <strong>Owner</strong>)</li>
+<li><strong>-S</strong> vrai si le fichier est de type socket (<em>S</em> -&gt; <strong>socket file</strong>)</li>
+<li><strong>-k</strong> vrai si le fichier possède le sticky-bit en mode actif (<em>k</em> -&gt; <strong>socket On</strong>)</li>
+<li><strong>-s</strong> vrai si le fichier existe et à une taille non nulle (<em>s</em> -&gt; <strong>size</strong>)</li>
+<li><strong>-L</strong> vrai si le fichier existe et est de type lien symbolique (<em>L</em> -&gt; <strong>symbolic Link</strong>)</li>
+<li><strong>-ef</strong> vrai si le fichier 1 est égale au fichier 2 (<em>ef</em> -&gt; <strong>equal file</strong>)</li>
+<li><strong>-nt</strong> vrai si le fichier existe et est plus récent que le fichier 2 (<em>nt</em> -&gt; <strong>newer than</strong>)</li>
+<li><strong>-nt</strong> vrai si le fichier existe et est plus récent que le fichier 2 (<em>nt</em> -&gt; <strong>newer than</strong>)</li>
+<li><strong>-ot</strong> vrai si le fichier existe et est plus ancien que le fichier 2 (<em>ot</em> -&gt; <strong>older than</strong>)</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h3>Exemples :</h3>
+<pre class="code bash literal-block">
+<span class="c1"># Paramètres
+</span><span class="nv">fichier</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="nv">fichier2</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">&quot;</span>
+
+<span class="c1"># Actions
+</span><span class="k">if</span> <span class="o">[</span> -a <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> existe&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> -b <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> est de type bloc&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> -c <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> est de type caractère&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> -f <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> est de type fichier&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> -d <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> est un répertoire&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> -r <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> est accessible en lecture&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> -w <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> est accessible en écriture&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> -G <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> appartient au groupe de l'utilisateur&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> -O <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> appartient à l'utilisateur&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> -L <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> est un lien symbolique&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> -S <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> est un socket&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> -k <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> possède le sticky bit&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> -s <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> a une taille non nulle&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> -ef <span class="s2">&quot;</span><span class="nv">$fichier2</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> est égal à </span><span class="nv">$fichier2</span><span class="s2">&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> -nt <span class="s2">&quot;</span><span class="nv">$fichier2</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> est plus récent que le </span><span class="nv">$fichier2</span><span class="s2">&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2">&quot;</span> -ot <span class="s2">&quot;</span><span class="nv">$fichier2</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$fichier</span><span class="s2"> est plus ancien </span><span class="nv">$fichier2</span><span class="s2">&quot;</span><span class="p">;</span><span class="k">fi</span>
+</pre>
+</div>
+<div class="section" id="operateurs-comparaisons-chaines-de-caractere">
+<h3>Opérateurs comparaisons chaînes de caractère :</h3>
+<ul class="simple">
+<li><strong>-n</strong> vrai si la longueur de la chaîne est non-nulle (<em>n</em> -&gt; <strong>null</strong>)</li>
+<li><strong>-z</strong> vrai si la longueur de la chaîne est nulle (<em>z</em> -&gt; <strong>zero</strong>)</li>
+<li><strong>=</strong> vrai si les deux expressions si identiques</li>
+<li><strong>==</strong> vrai si les deux expressions si identiques</li>
+<li><strong>!=</strong> vrai si les deux expressions sont différentes</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3>Exemples :</h3>
+<pre class="code bash literal-block">
+<span class="c1"># Variables
+</span><span class="nv">chaine_1</span><span class="o">=</span><span class="s2">&quot;bash&quot;</span>
+<span class="nv">chaine_2</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+
+<span class="c1"># Actions
+</span><span class="k">if</span> <span class="o">[</span> -n <span class="s2">&quot;</span><span class="nv">$chaine_1</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;La chaîne </span><span class="nv">$chaine_1</span><span class="s2"> est non nulle&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> -n <span class="s2">&quot;</span><span class="nv">$chaine_2</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;La chaîne </span><span class="nv">$chaine_1</span><span class="s2"> est nulle&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$chaine_1</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="nv">$chaine_2</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;La chaîne 1 est égale à la chaîne 2&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$chaine_1</span><span class="s2">&quot;</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="nv">$chaine_2</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;La chaîne 1 est égale à la chaîne 2&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$chaine_1</span><span class="s2">&quot;</span> !<span class="o">=</span> <span class="s2">&quot;</span><span class="nv">$chaine_2</span><span class="s2">&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;La chaîne 1 est != de la chaîne 2&quot;</span><span class="p">;</span><span class="k">fi</span>
+</pre>
+</div>
+<div class="section" id="operateurs-comparaisons-entiers">
+<h3>Opérateurs comparaisons entiers :</h3>
+<ul class="simple">
+<li><strong>-eq</strong> vrai en cas d'égalité (<em>eq</em> -&gt; <strong>equal</strong>)</li>
+<li><strong>-ne</strong> vrai en cas d'inégalité (<em>ne</em> -&gt; <strong>not equal</strong>)</li>
+<li><strong>-gt</strong> vrai en cas de supériorité stricte (<em>gt</em> -&gt; <strong>grower than</strong>)</li>
+<li><strong>-ge</strong> vrai en cas de supériorité ou d'égalité (<em>ge</em> -&gt; <strong>grower or equal</strong>)</li>
+<li><strong>-lt</strong> vrai en cas d'infériorité stricte (<em>lt</em> -&gt; <strong>lower than</strong>)</li>
+<li><strong>-le</strong> vrai en cas d'infériorité ou d'égalité (<em>le</em> -&gt; <strong>lower or equal</strong>)</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>Exemples :</h3>
+<pre class="code bash literal-block">
+<span class="c1"># Vérification utilisateur
+</span><span class="k">if</span> <span class="o">[</span> <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$UID</span><span class="k">)</span> -ne <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;Pas root&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$UID</span><span class="k">)</span> -ge <span class="m">1000</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;Simple utilisateur&quot;</span><span class="p">;</span><span class="k">fi</span>
+
+<span class="c1"># Comparons des nombres
+</span><span class="k">if</span> <span class="o">[</span> <span class="m">4</span> -eq <span class="m">4</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;Les deux nombres sont égaux&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="m">5</span> -ne <span class="m">4</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;Les deux nombres sont inégaux&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="m">5</span> -gt <span class="m">4</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;Nombre 1 est plus grand que nombre 2&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="m">4</span> -ge <span class="m">4</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;Nombre 1 est plus grand ou égal à nombre 2&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="m">3</span> -lt <span class="m">4</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;Nombre 1 est plus petit que nombre 2&quot;</span><span class="p">;</span><span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> <span class="m">4</span> -le <span class="m">4</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;Nombre 1 est plus petit ou égal à nombre 2&quot;</span><span class="p">;</span><span class="k">fi</span>
+</pre>
+</div>
+<div class="section" id="cas-speciaux-complexes">
+<h3>Cas spéciaux / complexes :</h3>
+<pre class="code bash literal-block">
+<span class="c1"># Tester le code de retour de la commande précédente
+</span><span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -ne <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;la commande précédente n'a pas rencontré de problème(s)&quot;</span><span class="p">;</span>
+<span class="k">fi</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="k">$(</span>ls /home/<span class="k">)</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;La commande précédente n'a pas rencontré de problème(s)&quot;</span><span class="p">;</span>
+<span class="k">fi</span>
+
+<span class="c1"># Test --&gt; ET LOGIQUE
+# Variables
+</span><span class="nv">prenom</span><span class="o">=</span><span class="s2">&quot;Antoine&quot;</span>
+<span class="nv">nom</span><span class="o">=</span><span class="s2">&quot;LeBarbu&quot;</span>
+<span class="nv">role</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span>
+
+<span class="c1"># Actions
+</span><span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$prenom</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;Antoine&quot;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$nom</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;LeBarbu&quot;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$role</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;admin&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Les trois conditions sont respectées&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1"># Test --&gt; OU LOGIQUE
+#Variables
+</span><span class="nv">prenom</span><span class="o">=</span><span class="s2">&quot;Antoine&quot;</span>
+<span class="nv">nom</span><span class="o">=</span><span class="s2">&quot;LeBarbu&quot;</span>
+<span class="nv">role</span><span class="o">=</span><span class="s2">&quot;admin&quot;</span>
+
+<span class="c1"># Actions
+</span><span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$prenom</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;Antoine&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$nom</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;LeBarbu&quot;</span> <span class="o">]</span> <span class="o">||</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$role</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;admin&quot;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Une (ou +) des trois conditions est au moins respectée&quot;</span>
+<span class="k">fi</span>
+</pre>
+</div>
+<div class="section" id="exemple">
+<h3>Exemple</h3>
+<pre class="code bash literal-block">
+<span class="c1"># Variables
+</span><span class="nv">prenom</span><span class="o">=</span><span class="s2">&quot;Thomas&quot;</span>
+
+<span class="c1"># Testons le ET LOGIQUE
+</span><span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$prenom</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s2">&quot;Thomas&quot;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$UID</span><span class="k">)</span> -ne <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Thomas - simple utilisateur&quot;</span><span class="p">;</span>
+<span class="k">fi</span>
+</pre>
+</div>
+<div class="section" id="case-en-bash">
+<h3><strong>Case</strong> en BASH :</h3>
+<p>Ce que l'on appelle <em>case</em> est une instruction permettant de gérer plusieurs cas. Cette action est implémentée dans beaucoup de langages avec des noms différents (<strong>switch</strong> en <em>PHP</em>, <em>C</em> ...). Une application concrète va vous éclairer rapidement sur son utilisation :</p>
+<pre class="code bash literal-block">
+<span class="c1"># le switch de bash
+</span>
+<span class="c1"># affichage d'un menu
+</span>
+cat<span class="s">&lt;&lt;-EOF
+
+[1]. Steak
+[2]. Poisson
+[3]. Salade Salakis
+
+EOF</span>
+
+<span class="c1"># action
+</span><span class="nb">read</span> -p <span class="s2">&quot;Saisir votre choix : &quot;</span> choix
+
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$choix</span><span class="s2">&quot;</span> in
+    <span class="m">1</span>   <span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;Un bon gros Charal y'a rien de mieux !&quot;</span>     <span class="p">;;</span>
+    <span class="m">2</span>   <span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;C'est un bon poissonnet !&quot;</span>                  <span class="p">;;</span>
+    <span class="m">3</span>   <span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;Salakis au bon lait de brebisssss !&quot;</span>        <span class="p">;;</span>
+    *   <span class="o">)</span> <span class="nb">echo</span> <span class="s2">&quot;Erreur de repas, bye !&quot;</span>                     <span class="p">;;</span>
+<span class="k">esac</span>
+</pre>
+<p>Cet exemple affiche dans un premier temps le choix des menus à l'écran (<strong>cat&lt;&lt;-EOF</strong> jusqu'au second <strong>EOF</strong>) puis demande à l'utilisateur de saisir son voeu (<strong>read -p &quot;Saisir votre choix &quot; choix</strong>) qui sera stocké dans la variable <em>choix</em>. Ensuite vient la partie intéressante le case qui peut se résumer de la manière suivante ici : si le contenu de la variable <em>choix</em> est égal à 1 (soit le steak) alors afficher <em>Un bon gros Charal y'a rien de mieux !&quot;</em>, sinon si la variable <em>choix</em>
+égale à 2 alors afficher <em>C'est un bon poissonnet</em> sinon si la variable <em>choix</em> est égale à3 afficher <em>Salakis au bon lait de brebisssss</em> sinon dans tous les autres cas non traités afficher <em>Erreur de repas, bye</em>.</p>
+</div>
+<div class="section" id="d-autres-possibilites-de-case">
+<h3>D'autres possibilités de <strong>case</strong> :</h3>
+<pre class="code bash literal-block">
+<span class="c1"># variable note sur 15
+</span><span class="nb">read</span> -p <span class="s2">&quot;Saisir votre note sur 15 : &quot;</span> note
+
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$note</span><span class="s2">&quot;</span> in
+
+1<span class="o">[</span>0-5<span class="o">]</span>              <span class="o">)</span>   <span class="nb">echo</span> <span class="s2">&quot;Votre note est excellent&quot;</span>                <span class="p">;;</span>
+<span class="o">[</span>0-9<span class="o">]</span>               <span class="o">)</span>   <span class="nb">echo</span> <span class="s2">&quot;Votre note sur 60 est variable&quot;</span>          <span class="p">;;</span>
+absent<span class="p">|</span>inapte<span class="p">|</span>abs   <span class="o">)</span>   <span class="nb">echo</span> <span class="s2">&quot;Une chance que vous ayez été malade&quot;</span>     <span class="p">;;</span>
+*                   <span class="o">)</span>   <span class="nb">echo</span> <span class="s2">&quot;Erreur&quot;</span>                                  <span class="p">;;</span>
+<span class="k">esac</span>
+</pre>
+<p>Ainsi comme vous le voyez il est possible de combiner plusieurs cas avec <strong>|</strong> signifiant <em>ou</em> mais aussi de mettre des expressions régulières <strong>[0-9]</strong>...</p>
+</div>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="navigation">
+		<div class="nav-previous">
+				<a href="https://tom-admin.github.io/author/mobius.html">
+			<span class="meta-nav">&larr;</span> Newer posts</a>
+		</div>		
+</div>
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://getpelican.com">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>

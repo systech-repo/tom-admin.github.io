@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+		<title>tom-admin &mdash; Articles in Category Linux</title>
+		<meta charset="utf-8" />
+		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="stylesheet" type="text/css" href="https://tom-admin.github.io/theme/css/style.css" />
+		<link rel='stylesheet' id='oswald-css'  href='http://fonts.googleapis.com/css?family=Oswald&#038;ver=3.3.2' type='text/css' media='all' />
+		<style type="text/css">
+			body.custom-background { background-color: #f5f5f5; }
+		</style>
+		<link rel="alternate" type="application/atom+xml"
+			title="tom-admin — Flux Atom"
+			href="https://tom-admin.github.io/" /> 
+		<!--[if lte IE 8]><script src="https://tom-admin.github.io/theme/js/html5shiv.js"></script><![endif]-->
+</head>
+
+<body class="home blog custom-background " >
+	<div id="container">
+		<div id="header">
+				<h1 id="site-title"><a href="https://tom-admin.github.io">tom-admin</a></h1>
+<h2 id="site-description">#!/dev/tom-admin</h2>		</div><!-- /#banner -->
+		
+		<div id="menu">
+			<div class="menu-navigation-container">
+				<ul id="menu-navigation" class="menu">
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/astuces.html">Astuces</a></li>
+						<li class="active" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/linux.html">Linux</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/memento.html">Memento</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/pelican.html">Pelican</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/python.html">Python</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/revisions.html">Révisions</a></li>
+						<li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="https://tom-admin.github.io/category/scripting.html">Scripting</a></li>
+
+				</ul>
+			</div> <!--/#menu-navigation-container-->
+		</div><!-- /#menu -->
+		
+		<div class="page-title">
+<div class="page-title">
+	<h2><span>Linux</span></h2>
+</div>
+		</div>
+	
+		<div id="contents">
+<div class="post type-post status-publish format-standard hentry category-general" id="post">
+	<div class="entry-meta">
+		<div class="date"><a href="https://tom-admin.github.io/i-love-linux-2.html">jeu. 26 février 2015</a></div>
+		<span class="byline">By <a href="https://tom-admin.github.io/author/mobius.html">Mobius</a></span>
+			<span class="cat-links"><a href="https://tom-admin.github.io/category/linux.html" title="View all posts in Linux" rel="category tag">Linux</a></span>
+	</div> <!-- /#entry-meta -->
+	<div class="main">
+		<h2 class="entry-title">
+			<a href="https://tom-admin.github.io/i-love-linux-2.html" title="Permalink to I Love Linux #2" rel="bookmark">I Love Linux #2</a>
+		</h2>
+		<div class="entry-content">
+			<p>Tout système <strong>GNU/Linux</strong> interagit avec ce que l'on appelle des <em>niveaux d'exécution</em>. Par ailleurs, le système est toujours enfermé dans un <em>niveau d'exécution</em> et cela en abstraction de son activité propre (<em>serveur</em>, <em>desktop</em> ...). Pour donner une définition claire et simple, un <em>niveau d'exécution</em> est une sorte d'interface fonctionnelle qui définit scrupuleusement la liste des services qui doivent être en fonctionnement ou bien arrêtés. Ainsi, dès lors que le système change
+de <em>niveau</em> il va vérifier quels sont les services à démarrer et au contraire quels sont ceux à arrêter.</p>
+<div class="section" id="presentation-des-niveaux">
+<h2>Présentation des niveaux</h2>
+<ul class="simple">
+<li><strong>Niveau 0</strong> : c'est le premier niveau, le système est inopérant, physiquement arrêté. Aussi surprenant que cela puisse paraître, ce <em>niveau 0</em> demande une configuration comme tout autre niveau qui se respecte : en effet, dès lors que le système va entrer en <em>niveau 0</em>, il faut que la gestion des services soit décrite (les services à arrêter).</li>
+<li><strong>Niveau 1</strong> ou <strong>Single Level</strong> : ce niveau <strong>1</strong> ce distingue des autres car il a la particularité de correspondre à un état de maintenance. Dès lors, seule le <em>root</em> peut se connecter à la machine, la majorité des services sont inopérant car arrêtés, seule l'activité la plus basique est exploitable. Les opérations de maintenance peuvent se dérouler tranquillement.</li>
+<li><strong>Niveau 2</strong> : ce niveau n'est que rarement utilisé, dédié à l'administrateur qui peut lui conférer un mode de fonctionnement particulier (libre est à lui de choisir les services démarrés et ceux arrêtés). Notons que sur les distributions héritées de <strong>Debian</strong>, ce niveau est fonctionnel par défaut.</li>
+<li><strong>Niveau 3</strong> : ce niveau démarre tous les services à l'exception de l'interface graphique. Sur la majorité des systèmes, ce service est fonctionnel par défaut.</li>
+<li><strong>Niveau 4</strong> : à l'instar du niveau 2, ce niveau est réservé à l'administrateur qui peut lui attribuer un fonctionnement particulier.</li>
+<li><strong>Niveau 5</strong> : tous les services sont démarrés ainsi que l'interface graphique. Sur les distributions dérivées de <strong>Debian</strong>, ce niveau n'est pas utilisé.</li>
+<li><strong>Niveau 6</strong> : état éphémère correspondant à un état de redémarrage <em>reboot</em>. La configuration du <strong>niveau 6</strong> consistera à définir les services à arrêter lors du redémarrage. Ensuite, dès lors que le redémarrge sera terminé, le système entrera dans un autre <strong>niveau d'exécution</strong> (en général celui correspondant au niveau par <em>défaut</em>).</li>
+</ul>
+</div>
+<div class="section" id="le-grand-architecte">
+<h2>Le grand architecte</h2>
+<p>En effet, il est légitime de se demander qui dispose du choix de changer le niveau d'exécution lorsque l'on a installé son système. La réponse n'est autre que la distribution elle-même. Néanmoins,  <strong>l'administrateur</strong> est libre de préférer une gestion personnelle en modifiant la configuration de ces-dits niveaux et en choisissant le niveau fonctionnel (autrement dit dans quel état de la machine ces niveaux sont opérants) propre à chacun des niveaux. Pour rappel, chaque niveau
+d'exécution va interférer dès lors avec les services du système, soit en les arrêtant soit en les démarrant.</p>
+</div>
+<div class="section" id="je-suis-ton-pere">
+<h2>Je suis ton père</h2>
+<p>je vous propose de faire une petite commande en introduction :</p>
+<pre class="code bash literal-block">
+$ ps -ef <span class="p">|</span> head
+UID   PID   PPID   C   CTIME   TTY       TIME     CMD
+root    <span class="m">1</span>      <span class="m">0</span>   <span class="m">0</span>   10:08     ?   00:00:14  init<span class="o">[</span>5<span class="o">]</span>
+</pre>
+<p>Cette commande listant les processus est particulièrement intéressante : en première position nous pouvons voir qu'un certain processus nommé <strong>init</strong> est lancé avec un PPID (<em>Parent Process Identification</em>) égal à <strong>0</strong>. Autrement dit, <strong>init</strong> est le processus père de tous les autres processus. En effet, ce sera le premier à être lancé lors du chargement de votre noyau <em>kernel</em>. Toute sa configuration est disponible dans le fichier <strong>/etc/inittab</strong> vous pourrez admirer en tout heure la beauté
+de son fonctionnement.</p>
+</div>
+<div class="section" id="le-fichier-etc-inittab">
+<h2>Le fichier <strong>/etc/inittab</strong></h2>
+<p>Il faut savoir en préambule que le contenu du fichier <strong>/etc/inittab</strong> diffère d'une distribution à une autre. Malgré cela, ce fichier adopte toujours des similarités communes : <strong>identifiant</strong>:<strong>niveau</strong>:<strong>mode_action</strong>:<strong>commande</strong></p>
+<div class="section" id="explorons-etc-inittab">
+<h3>Explorons <em>/etc/inittab</em></h3>
+<ul class="simple">
+<li><em>identifiant</em> : chaîne alphanumérique composée d'un ou deux caractères, permettant d'identifier précisemment la ligne. Restriction : une ligne à un identifiant propre</li>
+<li><em>niveau</em> : définit le niveau d'exécution (en chiffres)</li>
+<li><em>mode_action</em> : correspond à des modes modèles permettant de définir l'exécution de la commande</li>
+<li><em>commande</em> : la commande à exécuter en fonction d'un niveau ou des niveaux paramétré(s) en fonction du mode d'action</li>
+</ul>
+</div>
+<div class="section" id="les-modes-d-actions-habituels">
+<h3>Les modes d'actions habituels</h3>
+<ul class="simple">
+<li><em>initdefault</em> : dans ce mode le champ <em>commande</em> est inexistant (vide). Sa fonction ne sert qu'à définir le niveau d'exécution du système par défaut</li>
+<li><em>sysinit</em> : permet d'exécuter des scripts lors de la phase d'initialisation du système et cela en totale abstraction du niveau d'exécution. Ainsi le deuxième champ est inexistant (vide)</li>
+<li><em>wait</em> : exécute la commande ou le script précisé en attendant la fin de l'exécution de ce-dernier ou de cette-dernière pour passer aux autres lignes du fichier inittab</li>
+<li><em>respawn</em> : permet d'exécuter la commande en veillant à ce que son processus figure en background. Interprète les lignes suivantes du fichier inittab ; si le processus de la commande vient à s'arrêter alors init le rappelera de manière systématique.</li>
+</ul>
+</div>
+<div class="section" id="exemple-d-un-fichier-inittab-d-une-distribution-redhat">
+<h3>Exemple d'un fichier <strong>inittab</strong> d'une distribution RedHat</h3>
+<pre class="code bash literal-block">
+id:5:initdefault:
+si::sysinit:/etc/rc.d/rc.sysinit
+10:0:wait:/etc/rc.d/rc 0
+11:1:wait:/etc/rc.d/rc 1
+12:2:wait:/etc/rc.d/rc 2
+13:3:wait:/etc/rc.d/rc 3
+14:4:wait:/etc/rc.d/rc 4
+15:5:wait:/etc/rc.d/rc 5
+16:6:wait:/etc/rc.d/rc 6
+x:5:respawn:/etc/X11/prefdm -nodaemon
+</pre>
+</div>
+</div>
+<div class="section" id="les-services-du-systeme">
+<h2>Les services du système</h2>
+<p>Tout système GNU/Linux exécute les différents services par l'intermédiaire de scripts normalisés, situés dans le répertoire <strong>/etc/init.d/</strong> (physiquement ou en tant que lien symbolique) et comportent deux états, paramètres obligatoires : <strong>start</strong> pour lancer le service et <strong>stop</strong> pour l'arrêt du service.</p>
+<pre class="code bash literal-block">
+/etc/init.d/nom_du_service start
+/etc/init.d/nom_du_service stop
+</pre>
+<p>ou bien</p>
+<pre class="code bash literal-block">
+service nom_du_service start
+service nom_du_service stop
+</pre>
+<p>D'autres paramètres sont souvent utilisés comme <em>restart</em> pour redémarrer le service ou encore <em>status</em> indiquant l'état du service. Il faut savoir maintenant que l'utilisation de la commande <em>service</em> est couramment préférée puisqu'en effet le service sera lancé en s'affranchissant au maximum de l'environnement (pwd, variables ...). Le service sera dès lors démarré au sein d'un environnement plus sain, neutre et moins exposé aux différentes anomalies éventuelles découlant de
+l'environnement.</p>
+<div class="section" id="format-d-un-script-de-service">
+<h3>Format d'un script de service</h3>
+<pre class="code bash literal-block">
+<span class="ch">#!/bin/bash -
+</span><span class="k">case</span> <span class="nv">$1</span> in
+start<span class="o">)</span>
+    <span class="c1"># commande permettant de lancer le service
+</span><span class="p">;;</span>
+stop<span class="o">)</span>
+    <span class="c1"># commande permettant d'arrêter le service
+</span><span class="p">;;</span>
+<span class="k">esac</span>
+</pre>
+<p>79</p>
+</div>
+</div>
+
+		</div> <!--/#entry-content-->
+	</div> <!--/#main-->
+</div>  <!--/#post--><div class="navigation">
+</div>
+		</div>
+		
+		<div id="footer">
+			<p>Powered by <a href="http://getpelican.com">Pelican</a>, theme by <a href="http://bunnyman.info">tBunnyMan</a>.</p>
+		</div><!-- /#footer -->
+	</div><!-- /#container -->
+	<div style="display:none"></div>
+</body>
+</html>
